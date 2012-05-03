@@ -43,6 +43,7 @@ Bundle "mattn/favstar-vim"
 Bundle "mattn/webapi-vim"
 Bundle "mattn/googletasks-vim"
 Bundle "yuratomo/w3m.vim"
+Bundle "altercation/vim-colors-solarized"
 
 " github 以外のリポジトリ (3)
 " Bundle "git://git.wincent.com/command-t.git"
@@ -131,12 +132,13 @@ if has('win32')
 else
 	:let twitvim_browser_cmd = 'firefox'
 endif
-let twitvim_count = 50
+let twitvim_count = 200
 nnoremap ,tp :<C-u>PosttoTwitter<CR>
 nnoremap ,tf :<C-u>FriendsTwitter<CR><C-w>j
 nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
 nnoremap ,tr :<C-u>RepliesTwitter<CR><C-w>j
 nnoremap ,tn :<C-u>NextTwitter<CR>
+nnoremap ,tl :<C-u>ListTwitter list<CR><C-w>j
 
 " autocmd FileType twitvim call s:twitvim_my_settings()
 " function! s:twitvim_my_settings()
@@ -145,4 +147,5 @@ nnoremap ,tn :<C-u>NextTwitter<CR>
 
 """ w3m.vim
 let g:w3m#disable_vimproc = 1  
+let g:w3m#homepage = "http://www.google.co.jp/"
 
