@@ -7,12 +7,16 @@ map <S-Left>  :tabmove! -1<CR>
 " ブラウザタイトルの変更
 set titlestring=Vimperator
 
+" 再起動すると、auto_source.jsが無効になってしまうので、起動時に読み込んでみる
+autocmd VimperatorEnter .* :aso ~/Dropbox/dotfiles/.vimperatorrc
+
 " Evernote
 noremap e :bmlevernotewebclip<CR>
 " noremap e :js readable_by_evernote__menu__call(buffer.URL)<CR>
 " noremap E :js __readable_by_evernote__launch(buffer.URL)<CR>
 
-"カラースキーム"
+" カラースキーム"
+" colorscheme indigo
 colorscheme sweets_dita
 
 " ヒントをアルファベットに
@@ -43,13 +47,13 @@ set editor='vim'
 " キーマップ Key Mapping
 "==============================================================================
 " mapname normal visual ??? insert commandline
-" noremap o o o x x
-" noremap! x x x o o
-" nnoremap o x x x x
-" vnoremap x o x x x
-" onoremap x x o x x
-" inoremap x x x o x
-" cnoremap x x x x o
+" noremap   o      o     o    x         x
+" noremap!  x      x     x    o         o
+" nnoremap  o      x     x    x         x
+" vnoremap  x      o     x    x         x
+" onoremap  x      x     o    x         x
+" inoremap  x      x     x    o         x
+" cnoremap  x      x     x    x         o
 "------------------------------------------------------------------------------
 
 " ヴィジュアルモードのカーソル左右移動もh,l
