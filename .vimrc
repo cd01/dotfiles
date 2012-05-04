@@ -29,7 +29,7 @@ endif
 Bundle 'TwitVim'
 Bundle 'surround.vim'
 Bundle 'cake.vim'
-Bundle 'matrix.vim'
+" Bundle 'matrix.vim'
 
 " github ‚Ì”CˆÓ‚ÌƒŠƒ|ƒWƒgƒŠ (2)
 " Bundle "tpope/vim-fugitive"
@@ -148,4 +148,3 @@ nnoremap ,tl :<C-u>ListTwitter list<CR><C-w>j
 """ w3m.vim
 let g:w3m#disable_vimproc = 1  
 let g:w3m#homepage = "http://www.google.co.jp/"
-
