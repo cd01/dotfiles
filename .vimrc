@@ -24,14 +24,14 @@ else
   call vundle#rc()
 endif
 
-" vim-scripts ƒŠƒ|ƒWƒgƒŠ (1)
+" vim-scripts ãƒªãƒã‚¸ãƒˆãƒª (1)
 " Bundle "rails.vim"
 Bundle 'TwitVim'
 Bundle 'surround.vim'
 Bundle 'cake.vim'
 " Bundle 'matrix.vim'
 
-" github ‚Ì”CˆÓ‚ÌƒŠƒ|ƒWƒgƒŠ (2)
+" github ã®ä»»æ„ã®ãƒªãƒã‚¸ãƒˆãƒª (2)
 " Bundle "tpope/vim-fugitive"
 Bundle 'Shougo/neocomplcache'  
 Bundle 'Shougo/unite.vim'
@@ -45,88 +45,89 @@ Bundle "mattn/googletasks-vim"
 Bundle "yuratomo/w3m.vim"
 Bundle "altercation/vim-colors-solarized"
 
-" github ˆÈŠO‚ÌƒŠƒ|ƒWƒgƒŠ (3)
+" github ä»¥å¤–ã®ãƒªãƒã‚¸ãƒˆãƒª (3)
 " Bundle "git://git.wincent.com/command-t.git"
 
 
 filetype plugin indent on
 " -------------Vundle---------------------------------------------------------
 
-"swapƒtƒ@ƒCƒ‹‚ğ‚Ü‚Æ‚ß‚Ä’u‚­êŠ(DropBox‘Îô)
+"swapãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã¾ã¨ã‚ã¦ç½®ãå ´æ‰€(DropBoxå¯¾ç­–)
 set swapfile
 set directory=~/.vimswap
 
-"backupƒtƒ@ƒCƒ‹‚ğ‚Ü‚Æ‚ß‚Ä’u‚­êŠ(DropBox‘Îô)
+"backupãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã¾ã¨ã‚ã¦ç½®ãå ´æ‰€(DropBoxå¯¾ç­–)
 set backup
 set backupdir=~/.vimbackup
 
 let &directory = &backupdir
 
 
-highlight zenkakuda cterm=underline ctermfg=black guibg=black
-if has('win32') && !has('gui_running')
-	" win32‚ÌƒRƒ“ƒ\[ƒ‹vim‚Ísjis‚Åİ’èƒtƒ@ƒCƒ‹‚ğ“Ç‚Ş‚Ì‚ÅA
-	" sjis‚Ì‘SŠpƒXƒy[ƒX‚Ì•¶šƒR[ƒh‚ğw’è‚µ‚Ä‚â‚é
-	match zenkakuda /\%u8140/
-else
-	match zenkakuda /@/ "©‘SŠpƒXƒy[ƒX
-endif
+"=Rictyä½¿ã£ã¦ãŸã‚‰ä¸è¦========================================================
+" highlight zenkakuda cterm=underline ctermfg=black guibg=black
+" if has('win32') && !has('gui_running')
+" 	" win32ã®ã‚³ãƒ³ã‚½ãƒ¼ãƒ«vimã¯sjisã§è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã‚€ã®ã§ã€
+" 	" sjisã®å…¨è§’ã‚¹ãƒšãƒ¼ã‚¹ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’æŒ‡å®šã—ã¦ã‚„ã‚‹
+" 	match zenkakuda /\%u8140/
+" else
+" 	match zenkakuda /ã€€/ "â†å…¨è§’ã‚¹ãƒšãƒ¼ã‚¹
+" endif
 
 
 "---------------------------------------------------------------------------
-" OS–ˆ‚É.vim‚Ì“Ç‚İ‚İæ‚ğ•Ï‚¦‚é{{{
+" OSæ¯ã«.vimã®èª­ã¿è¾¼ã¿å…ˆã‚’å¤‰ãˆã‚‹{{{
 "---------------------------------------------------------------------------
-if has('win32')
+if has("win32") || has("win64")
 	:let $VIMFILE_DIR = 'vimfiles'
 else
 	:let $VIMFILE_DIR = '.vim'
 endif
-" ` ‚±‚Á‚©‚çæA~/.vim‚ğQÆ‚·‚éê‡A‘ã‚í‚è‚ÉA~/.$VIMFILE_DIR ‚Æ‘‚­‚±‚Æ!
+" ï½ ã“ã£ã‹ã‚‰å…ˆã€~/.vimã‚’å‚ç…§ã™ã‚‹å ´åˆã€ä»£ã‚ã‚Šã«ã€~/.$VIMFILE_DIR ã¨æ›¸ãã“ã¨!
 "}}}
 
 " helptags ~/$VIMFILE_DIR/doc
 
-" colorscheme
+" colorscheme ===================================================================================
 if has("win32") || has("win64")
 else
   colorscheme desert
 endif
 
-""" Unite.vim
-" ‹N“®‚ÉƒCƒ“ƒT[ƒgƒ‚[ƒh‚ÅŠJn
+""" Unite.vim ===================================================================================
+" èµ·å‹•æ™‚ã«ã‚¤ãƒ³ã‚µãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã§é–‹å§‹
 let g:unite_enable_start_insert = 1
 
-" ƒCƒ“ƒT[ƒg^ƒm[ƒ}ƒ‹‚Ç‚¿‚ç‚©‚ç‚Å‚àŒÄ‚Ño‚¹‚é‚æ‚¤‚ÉƒL[ƒ}ƒbƒv
+" ã‚¤ãƒ³ã‚µãƒ¼ãƒˆï¼ãƒãƒ¼ãƒãƒ«ã©ã¡ã‚‰ã‹ã‚‰ã§ã‚‚å‘¼ã³å‡ºã›ã‚‹ã‚ˆã†ã«ã‚­ãƒ¼ãƒãƒƒãƒ—
 nnoremap <silent> <C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 inoremap <silent> <C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> <C-b> :<C-u>Unite buffer file_mru<CR>
 inoremap <silent> <C-b> <ESC>:<C-u>Unite buffer file_mru<CR>
 
-" ƒoƒbƒtƒ@ˆê——
+" ãƒãƒƒãƒ•ã‚¡ä¸€è¦§
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-" ƒtƒ@ƒCƒ‹ˆê——
+" ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-" ƒŒƒWƒXƒ^ˆê——
+" ãƒ¬ã‚¸ã‚¹ã‚¿ä¸€è¦§
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-" Å‹ßg—p‚µ‚½ƒtƒ@ƒCƒ‹ˆê——
+" æœ€è¿‘ä½¿ç”¨ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
-" ‘S•”æ‚¹
+" å…¨éƒ¨ä¹—ã›
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 
-" unite.vimã‚Å‚ÌƒL[ƒ}ƒbƒsƒ“ƒO
+" unite.vimä¸Šã§ã®ã‚­ãƒ¼ãƒãƒƒãƒ”ãƒ³ã‚°
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
-  " ’PŒê’PˆÊ‚©‚çƒpƒX’PˆÊ‚Åíœ‚·‚é‚æ‚¤‚É•ÏX
+  " å˜èªå˜ä½ã‹ã‚‰ãƒ‘ã‚¹å˜ä½ã§å‰Šé™¤ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
   imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
-  " ESCƒL[‚ğ2‰ñ‰Ÿ‚·‚ÆI—¹‚·‚é
+  " ESCã‚­ãƒ¼ã‚’2å›æŠ¼ã™ã¨çµ‚äº†ã™ã‚‹
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
 
-""" neocomplcache
-let g:neocomplcache_enable_at_startup = 1 " ‹N“®‚É—LŒø‰»
+""" neocomplcache ===================================================================================
+let g:neocomplcache_enable_at_startup = 1 " èµ·å‹•æ™‚ã«æœ‰åŠ¹åŒ–
 
-""" twitvim
+""" twitvim ===================================================================================
 if has('win32')
 	:let twitvim_browser_cmd = 'C:\Program Files\Mozilla Firefox\firefox.exe'
 else
@@ -145,6 +146,6 @@ nnoremap ,tl :<C-u>ListTwitter list<CR><C-w>j
 "     set nowrap
 " endfunction
 
-""" w3m.vim
+""" w3m.vim ===================================================================================
 let g:w3m#disable_vimproc = 1  
 let g:w3m#homepage = "http://www.google.co.jp/"
