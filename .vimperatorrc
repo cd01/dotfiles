@@ -19,15 +19,16 @@ autocmd VimperatorEnter .* :aso ~/Dropbox/dotfiles/.vimperatorrc
 "=====================================================================
 " Evernote
 "=====================================================================
-noremap e :bmlevernotewebclip<CR>
-" noremap e :js readable_by_evernote__menu__call(buffer.URL)<CR>
-" noremap E :js __readable_by_evernote__launch(buffer.URL)<CR>
+noremap e :js __readable_by_evernote.readable_by_evernote__menu__call(buffer.URL)<CR>
+noremap E :bmlevernotewebclip<CR>
+" noremap E :js __readable_by_evernote.__evernote_remote.clip(buffer.URL)<CR>
+"                                         ↑よくわからない・・・orz
 
 "=====================================================================
 " カラースキーム"
 "=====================================================================
-" colorscheme indigo
 colorscheme sweets_dita
+" colorscheme indigo
 
 "=====================================================================
 " ヒントをアルファベットに
@@ -66,8 +67,9 @@ nnoremap l gt
 "=====================================================================
 set editor='vim'
 
+"=====================================================================
 " キーマップ Key Mapping
-"==============================================================================
+"=====================================================================
 " mapname normal visual ??? insert commandline
 " noremap   o      o     o    x         x
 " noremap!  x      x     x    o         o
@@ -76,7 +78,7 @@ set editor='vim'
 " onoremap  x      x     o    x         x
 " inoremap  x      x     x    o         x
 " cnoremap  x      x     x    x         o
-"------------------------------------------------------------------------------
+"=====================================================================
 
 "=====================================================================
 " ヴィジュアルモードのカーソル左右移動もh,l
@@ -142,7 +144,6 @@ if (button) {
 }
 EOM
 
-
 "=====================================================================
 "選択した文字列をCtrl+Gで検索  http://memo.officebrook.net/20090803.html#p01
 "=====================================================================
@@ -150,20 +151,21 @@ vmap <silent> <C-g> y<Esc><Esc>P
 
 "=====================================================================
 " feedSomeKeys_3.js
+" うまく動いていないので、そのうち調べて修正する
 "=====================================================================
 "対象外のページに移っても前の設定を引きずらないようにする
 "http://retlet.net/log/2008/06/feedsomekeys-js.html
-:autocmd LocationChange .* :fmapc
+":autocmd LocationChange .* :fmapc
 
 "tumblr
-:autocmd LocationChange 'www\.tumblr\.com/' :fmap j k t l p
+":autocmd LocationChange 'www\.tumblr\.com/' :fmap j k t l p
 
 "Gmail
-autocmd LocationChange mail\.google\.com/mail :fmap c / j k n p o u e x s r a # [ ] z ? ! gi gs gt gd ga gc gl gb *a *n { }
+autocmd LocationChange 'mail.google.com/mail' :fmap c / j k n p o u e x s r a # [ ] z ? ! gi gs gt gd ga gc gl gb *a *n { }
 
 "GoogleReader
 "http://d.karashi.org/20101030.html#p01
-autocmd LocationChange www\.google\.(com|co\.jp)/reader :fmap -vkey j k n p m s t v  A r S D N P X o O gh ga gs gt gu u / ?
+"autocmd LocationChange www\.google\.(com|co\.jp)/reader :fmap -vkey j k n p m s t v  A r S D N P X o O gh ga gs gt gu u / ?
 "GoogleReaderFullFeed
-autocmd LocationChange www\.google\.(com|co\.jp)/reader :fmap -vkey -event=keyup z
+"autocmd LocationChange www\.google\.(com|co\.jp)/reader :fmap -vkey -event=keyup z
 
