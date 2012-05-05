@@ -1,35 +1,53 @@
 " 3.3 (created: 2011/11/13 17:32:12)
 
+"=====================================================================
 " Shift + ← → で現在のタブの位置変更
+"=====================================================================
 map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
+"=====================================================================
 " ブラウザタイトルの変更
+"=====================================================================
 set titlestring=Vimperator
 
+"=====================================================================
 " 再起動すると、auto_source.jsが無効になってしまうので、起動時に読み込んでみる
+"=====================================================================
 autocmd VimperatorEnter .* :aso ~/Dropbox/dotfiles/.vimperatorrc
 
+"=====================================================================
 " Evernote
+"=====================================================================
 noremap e :bmlevernotewebclip<CR>
 " noremap e :js readable_by_evernote__menu__call(buffer.URL)<CR>
 " noremap E :js __readable_by_evernote__launch(buffer.URL)<CR>
 
+"=====================================================================
 " カラースキーム"
+"=====================================================================
 " colorscheme indigo
 colorscheme sweets_dita
 
+"=====================================================================
 " ヒントをアルファベットに
+"=====================================================================
 set hintchars=ifjklasdweuocvbnm
 
+"=====================================================================
 " アドオンインストール時の待ち時間カット
+"=====================================================================
 set! security.dialog_enable_delay=0
 
+"=====================================================================
 " 画像の多いタブを閉じた時にすぐにメモリ使用量を減らす
+"=====================================================================
 " http://space.geocities.yahoo.co.jp/gl/alice0775/view/20110416/1302920985
 set! image.mem.min_discard_timeout_ms=6000
 
+"=====================================================================
 "ime_controller.js
+"=====================================================================
 "auto"     : No change  
 "active"   : Initially IME on  
 "inactive" : Initially IME off  
@@ -37,11 +55,15 @@ set! image.mem.min_discard_timeout_ms=6000
 let g:ex_ime_mode = "inactive"  
 let g:textarea_ime_mode = "inactive"
 
+"=====================================================================
 " h/lでタブ移動
+"=====================================================================
 nnoremap h gT
 nnoremap l gt
 
+"=====================================================================
 "textareaをテキストエディタで編集する
+"=====================================================================
 set editor='vim'
 
 " キーマップ Key Mapping
@@ -56,17 +78,25 @@ set editor='vim'
 " cnoremap  x      x     x    x         o
 "------------------------------------------------------------------------------
 
+"=====================================================================
 " ヴィジュアルモードのカーソル左右移動もh,l
+"=====================================================================
 vnoremap h <Left>
 vnoremap l <Right>
 
+"=====================================================================
 " JavaScriptでのウィンドウ移動・リサイズ拒否
+"=====================================================================
 set! dom.disable_window_move_resize=true
 
+"=====================================================================
 " 新規タブをバックグラウンドで
+"=====================================================================
 set! browser.tabs.loadDivertedInBackground=true
 
+"=====================================================================
 " vimpからはてブアドオン操作
+"=====================================================================
 " https://github.com/hatena/hatena-bookmark-xul/wiki/Vimperator-ではてなブックマーク拡張を使う
 " http://d.hatena.ne.jp/ruedap/20110407/vimperator_hatena_bookmark_firefox_operation
 js <<EOM
@@ -79,14 +109,61 @@ liberator.globalVariables.hBookmark_shortcuts = {
 EOM
 javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
 
+"=====================================================================
 " Twittperator SSLで接続
+"=====================================================================
 let g:twittperator_use_ssl_connection_for_api_ep = 1
 
+"=====================================================================
 " Ctrl+MでEnter
-noremap <C-m> <CR>
-noremap! <C-m> <CR>
+"=====================================================================
+map <C-m> <CR>
 
+"=====================================================================
 " Ctrl+HでBackspace
-map <C-h> <Nop>
-noremap <C-h> <BS>
-noremap! <C-h> <BS>
+"=====================================================================
+map <C-h> <BS>
+
+"=====================================================================
+" Vimperatorボタン
+"=====================================================================
+js <<EOM
+var button = document.getElementById("appmenu-button");
+
+if (button) {
+  button.label = config.name;
+  options.add(["fxbuttonlabel"], "Edit Firefox button's label",
+    "string", config.name, {
+      setter: function (val) button.label = val,
+      getter: function () button.label,
+  });
+  button.width = 120;
+  button.style.background = "#000000";
+}
+EOM
+
+
+"=====================================================================
+"選択した文字列をCtrl+Gで検索  http://memo.officebrook.net/20090803.html#p01
+"=====================================================================
+vmap <silent> <C-g> y<Esc><Esc>P
+
+"=====================================================================
+" feedSomeKeys_3.js
+"=====================================================================
+"対象外のページに移っても前の設定を引きずらないようにする
+"http://retlet.net/log/2008/06/feedsomekeys-js.html
+:autocmd LocationChange .* :fmapc
+
+"tumblr
+:autocmd LocationChange 'www\.tumblr\.com/' :fmap j k t l p
+
+"Gmail
+autocmd LocationChange mail\.google\.com/mail :fmap c / j k n p o u e x s r a # [ ] z ? ! gi gs gt gd ga gc gl gb *a *n { }
+
+"GoogleReader
+"http://d.karashi.org/20101030.html#p01
+autocmd LocationChange www\.google\.(com|co\.jp)/reader :fmap -vkey j k n p m s t v  A r S D N P X o O gh ga gs gt gu u / ?
+"GoogleReaderFullFeed
+autocmd LocationChange www\.google\.(com|co\.jp)/reader :fmap -vkey -event=keyup z
+
