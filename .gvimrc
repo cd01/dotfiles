@@ -1,7 +1,9 @@
 colorscheme solarized 
 
 " 開いたら全画面
-autocmd GUIEnter * simalt ~x
+if has("win32") || has("win64")
+  autocmd GUIEnter * simalt ~x
+endif
 
 set background=dark
 set guifont=Ricty:h13
