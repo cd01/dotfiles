@@ -1,5 +1,68 @@
 " 3.3 (created: 2011/11/13 17:32:12)
 
+set history=5000
+ 
+" win-mouse.js 
+" http://vimperator.g.hatena.ne.jp/nokturnalmortum/20110328/1301314461
+let g:win_mouse_auto_blur        = 500
+let g:win_mouse_map_move_left    = "<A-h>"
+let g:win_mouse_map_move_right   = "<A-l>"
+let g:win_mouse_map_move_up      = "<A-k>"
+let g:win_mouse_map_move_down    = "<A-j>"
+let g:win_mouse_map_left_click   = "<A-q>"
+let g:win_mouse_map_middle_click = "<A-w>"
+let g:win_mouse_map_right_click  = "<A-e>"
+
+" undo limit
+set! browser.sessionstore.max_tabs_undo=100
+
+" 単語選択時の右側のスペース選択を行わない
+set! layout.word_select.eat_space_to_next_word=false
+
+" ページのアクセスキーを無効化
+set! ui.key.generalAccessKey=0
+set! ui.key.contentAccessKey=0
+
+" (t) tumblr
+" nnoremap <Leader>tr :<C-u>tombloo ReBlog<Space>-<Space>Tumblr
+" nnoremap <Leader>tt :<C-u>tombloo<Space>
+
+""" twittperator.js
+" http://d.hatena.ne.jp/ruedap/touch/20110122/vimperator_twitter_plugin_twittperator
+nnoremap ,tp :<C-u>tw 
+nnoremap ,tf :<C-u>tw!<CR>
+nnoremap ,tu :<C-u>tw!@<CR>
+
+" 各コマンド呼び出し
+" nnoremap <Leader>h :<C-u>hsearch<Space>
+" nnoremap <Leader>H :<C-u>hcopy<Space>
+" nnoremap <Leader>s :<C-u>viewSBMComments -type htdl -format=id,comment<CR>
+" nnoremap <Leader>g :<C-u>gmail<Space>
+" nnoremap <Leader>G :<C-u>gtrans<Space>
+" nnoremap <Leader>a :<C-u>applaunch<Space>
+" nnoremap <Leader>p :<C-u>pino<Space>
+" nnoremap <Leader>R :<C-u>js<Space>Readability.enableREADABILITY({target: {id: 'readability-statusbar-icon'}})<CR>
+
+" QuickMarks {{{
+
+" silent qmark a http://a.hatena.ne.jp/anekosp/
+" silent qmark B http://bit.ly/
+" silent qmark b https://mail.google.com/mail/?shva=1#buzz
+" silent qmark c https://catch.com/m/
+" silent qmark d http://d.hatena.ne.jp/nokturnalmortum/
+" silent qmark f http://fastladder.com/reader/
+" silent qmark g https://mail.google.com/mail/#mbox
+" silent qmark h http://www.google.co.jp/ig
+" silent qmark l http://reader.livedoor.com/reader/
+" silent qmark m http://mixi.jp/home.pl
+" silent qmark o https://www.ohloh.net/accounts/anekos
+" silent qmark r http://www.rememberthemilk.com/
+" silent qmark R http://www.rememberthemilk.com/home/anekosp/#section.tasks
+" silent qmark s http://springpadit.com/springpad/#home
+" silent qmark T http://anekos.tumblr.com/
+" silent qmark t http://www.tumblr.com/dashboard
+" silent qmark w http://twitter.com/home
+
 "=====================================================================
 " Shift + ← → で現在のタブの位置変更
 "=====================================================================
@@ -14,15 +77,14 @@ set titlestring=Vimperator
 "=====================================================================
 " 再起動すると、auto_source.jsが無効になってしまうので、起動時に読み込んでみる
 "=====================================================================
-autocmd VimperatorEnter .* :aso ~/Dropbox/dotfiles/.vimperatorrc
+" autocmd VimperatorEnter .* :aso ~/Dropbox/dotfiles/.vimperatorrc
 
 "=====================================================================
 " Evernote
 "=====================================================================
-noremap e :js __readable_by_evernote.readable_by_evernote__menu__call(buffer.URL)<CR>
-noremap E :bmlevernotewebclip<CR>
-" noremap E :js __readable_by_evernote.__evernote_remote.clip(buffer.URL)<CR>
-"                                         ↑よくわからない・・・orz
+noremap e :js __readable_by_evernote.readable_by_evernote__menu__call(buffer.URL);<CR>
+noremap E :js __readable_by_evernote.__readable_by_evernote__launch(true);<CR>
+" noremap E :js evernote_doAction( document.popupNode, 'CLIP_ACTION_SELECTION' );<CR>
 
 "=====================================================================
 " カラースキーム"
@@ -47,12 +109,12 @@ set! security.dialog_enable_delay=0
 set! image.mem.min_discard_timeout_ms=6000
 
 "=====================================================================
-"ime_controller.js
+" ime_controller.js
 "=====================================================================
-"auto"     : No change  
-"active"   : Initially IME on  
-"inactive" : Initially IME off  
-"disabled" : Disable IME
+" auto"     : No change  
+" active"   : Initially IME on  
+" inactive" : Initially IME off  
+" disabled" : Disable IME
 let g:ex_ime_mode = "inactive"  
 let g:textarea_ime_mode = "inactive"
 
@@ -70,14 +132,14 @@ set editor='vim'
 "=====================================================================
 " キーマップ Key Mapping
 "=====================================================================
-" mapname normal visual ??? insert commandline
-" noremap   o      o     o    x         x
-" noremap!  x      x     x    o         o
-" nnoremap  o      x     x    x         x
-" vnoremap  x      o     x    x         x
-" onoremap  x      x     o    x         x
-" inoremap  x      x     x    o         x
-" cnoremap  x      x     x    x         o
+" mapname         normal   visual    ???     insert commandline
+" noremap           o        o        o        x         x
+" noremap!          x        x        x        o         o
+" nnoremap          o        x        x        x         x
+" vnoremap          x        o        x        x         x
+" onoremap          x        x        o        x         x
+" inoremap          x        x        x        o         x
+" cnoremap          x        x        x        x         o
 "=====================================================================
 
 "=====================================================================
@@ -111,6 +173,40 @@ liberator.globalVariables.hBookmark_shortcuts = {
 EOM
 javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
 
+
+" appendAnchor
+let g:auto_append_anchor = 0
+let g:auto_append_anchor_once = 1
+
+" hints-for-embedded.js
+let g:hints_for_embedded_mode = "e"
+
+" sbm_comments_viewer
+let g:sbm_comments_viewer_filter_nocomments = 1
+
+" auto_source.js
+let g:auto_source_first_time = 1
+
+" gmail-commando.js
+let g:gmail_commando_map_translate = "<Leader>t"
+let g:gmail_commando_map_translate_thread = "<Leader>T"
+let g:gmail_commando_map_fold = "<Leader>f"
+let g:gmail_commando_map_unfold = "<Leader>F"
+let g:gmail_commando_map_important = "<Leader>i"
+let g:gmail_commando_map_unimportant = "<Leader>I"
+let g:gmail_commando_label_shortcut = 1
+
+" statstat
+let g:statstat_autorun = "true"
+let g:statstat_interval = "500"
+" :tw用の文字数カウント
+" let g:statstat_expression = "let ([,,,as]=commands.parseCommand(commandline.command)) as.length"
+let g:statstat_expression = "let ([,,,as]=commands.parseCommand(commandline.command)) as.length"
+
+" slideshare.js
+nnoremap -urls=www\\.slideshare\\.net l :slideshare next<CR>
+nnoremap -urls=www\\.slideshare\\.net h :slideshare prev<CR>
+
 "=====================================================================
 " Twittperator SSLで接続
 "=====================================================================
@@ -120,11 +216,15 @@ let g:twittperator_use_ssl_connection_for_api_ep = 1
 " Ctrl+MでEnter
 "=====================================================================
 map <C-m> <CR>
+imap <C-m> <CR>
 
 "=====================================================================
 " Ctrl+HでBackspace
 "=====================================================================
+map <C-h> <Nop>
 map <C-h> <BS>
+imap <C-h> <Nop>
+imap <C-h> <BS>
 
 "=====================================================================
 " Vimperatorボタン
@@ -132,16 +232,16 @@ map <C-h> <BS>
 js <<EOM
 var button = document.getElementById("appmenu-button");
 
-if (button) {
-  button.label = config.name;
-  options.add(["fxbuttonlabel"], "Edit Firefox button's label",
-    "string", config.name, {
-      setter: function (val) button.label = val,
-      getter: function () button.label,
-  });
-  button.width = 120;
+// if (button) {
+//   button.label = config.name;
+//   options.add(["fxbuttonlabel"], "Edit Firefox button's label",
+//     "string", config.name, {
+//       setter: function (val) button.label = val,
+//       getter: function () button.label,
+//   });
+//   button.width = 120;
   button.style.background = "#000000";
-}
+// }
 EOM
 
 "=====================================================================
@@ -151,21 +251,36 @@ vmap <silent> <C-g> y<Esc><Esc>P
 
 "=====================================================================
 " feedSomeKeys_3.js
-" うまく動いていないので、そのうち調べて修正する
 "=====================================================================
-"対象外のページに移っても前の設定を引きずらないようにする
-"http://retlet.net/log/2008/06/feedsomekeys-js.html
-":autocmd LocationChange .* :fmapc
+command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc
+lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c / j,n k,p n,j p,k o u e x s r a # [ ] ? gi gs gt gd ga gc
+lazy fmaps -u='www\.google\.co\.jp/reader' -events=vkeypress j k n p m s v A r S N P X O gh ga gs gt gu u / ? J K
+lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p <Space> <S-Space> z b < > q w e,g
+lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
+lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 
-"tumblr
-":autocmd LocationChange 'www\.tumblr\.com/' :fmap j k t l p
+"" new Twitter
+"fmaps -urls='^https?://twitter\.com/' j k ?
+"fmaps -urls='^https?://twitter\.com/' -events=vkeydown m r gh gr gp gf gm
+"fmaps -urls='^https?://twitter\.com/' -events=keydown c,<Esc>
+"
+"autocmd VimperatorEnter .* :loadplugins
+"autocmd VimperatorEnter .* :source ~/Dropbox/dotfiles/.vimperatorrc
 
-"Gmail
-autocmd LocationChange 'mail.google.com/mail' :fmap c / j k n p o u e x s r a # [ ] z ? ! gi gs gt gd ga gc gl gb *a *n { }
+""" 指定したサイトに行ったら、自動でClearly起動　テスト
+" js <<EOM
+" function test_evernote() {
+"   if (gBrowser.contentDocument.getElementById('__readable_extension_definitions') == null) {
+"     __readable_by_evernote.readable_by_evernote__menu__call(buffer.URL);
+"   }
+" }
+" EOM
+" lazy autocmd PageLoad 'http://alfalfalfa\.com/.*' js test_evernote()
 
-"GoogleReader
-"http://d.karashi.org/20101030.html#p01
-"autocmd LocationChange www\.google\.(com|co\.jp)/reader :fmap -vkey j k n p m s t v  A r S D N P X o O gh ga gs gt gu u / ?
-"GoogleReaderFullFeed
-"autocmd LocationChange www\.google\.(com|co\.jp)/reader :fmap -vkey -event=keyup z
+map ,r :source ~/.vimperatorrc<CR>:loadplugins<CR>:echo 'Reload .vimperatorrc and loadplugins!!'<CR>
 
+" :dia sqlitemanagerで起動できるらしい。要確認
+js <<EOM
+config.dialogs.push([ 'sqlitemanager', 'SQLite Manager', function() openUILinkIn('chrome://sqlitemanager/content/sqlitemanager.xul', 'tab') ]);
+EOM

@@ -8,7 +8,8 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=0
-set smartindent
+" set smartindent
+set cindent
 
 set incsearch
 
@@ -29,7 +30,11 @@ endif
 Bundle 'TwitVim'
 Bundle 'surround.vim'
 Bundle 'cake.vim'
-" Bundle 'matrix.vim'
+Bundle 'css_color.vim'
+Bundle 'Zenburn'
+Bundle 'molokai'
+Bundle 'desert.vim'
+" Bundle 'CSApprox'
 
 " github の任意のリポジトリ (2)
 " Bundle "tpope/vim-fugitive"
@@ -43,7 +48,12 @@ Bundle "mattn/favstar-vim"
 Bundle "mattn/webapi-vim"
 Bundle "mattn/googletasks-vim"
 Bundle "yuratomo/w3m.vim"
+Bundle "thinca/vim-guicolorscheme"
 Bundle "altercation/vim-colors-solarized"
+" Bundle "Lokaltog/vim-powerline"
+" CakePHP Viewのシンタックスvim-cakehtmlをgithubに公開 - さかなチキンぱん。
+" http://d.hatena.ne.jp/naberon/20101012/vim_cakehtml
+Bundle "naberon/vim-cakehtml"
 
 " github 以外のリポジトリ (3)
 " Bundle "git://git.wincent.com/command-t.git"
@@ -90,7 +100,9 @@ endif
 " colorscheme ===================================================================================
 if has("win32") || has("win64")
 else
-  colorscheme desert
+  set t_Co=256
+  " colorscheme desert_cui
+  colorscheme lucius
 endif
 
 """ Unite.vim ===================================================================================
@@ -149,3 +161,7 @@ nnoremap ,tl :<C-u>ListTwitter list<CR><C-w>j
 """ w3m.vim ===================================================================================
 let g:w3m#disable_vimproc = 1  
 let g:w3m#homepage = "http://www.google.co.jp/"
+
+" set filetype
+autocmd BufNewFile,BufRead *.vimrc set filetype=vim
+autocmd BufNewFile,BufRead *.vimperatorrc set filetype=vim
