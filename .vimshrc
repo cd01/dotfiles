@@ -1,5 +1,6 @@
 alias l='ls -la'
 alias x='exit'
+
 # alias cp='cp -i' 
 # alias mv='mv -i' 
 # alias ll='ls -lw' 

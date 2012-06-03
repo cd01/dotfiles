@@ -1,6 +1,6 @@
-colorscheme solarized 
+colorscheme lucius 
 
-" 開いたら全画面
+" Windowsで開いたら全画面
 if has("win32") || has("win64")
   autocmd GUIEnter * simalt ~x
 endif
