@@ -80,7 +80,7 @@ set titlestring=Vimperator
 " autocmd VimperatorEnter .* :aso ~/Dropbox/dotfiles/.vimperatorrc
 
 "=====================================================================
-" Evernote
+" Evernote Clearly
 "=====================================================================
 noremap e :js __readable_by_evernote.readable_by_evernote__menu__call(buffer.URL);<CR>
 noremap E :js __readable_by_evernote.__readable_by_evernote__launch(true);<CR>
@@ -185,7 +185,7 @@ let g:hints_for_embedded_mode = "e"
 let g:sbm_comments_viewer_filter_nocomments = 1
 
 " auto_source.js
-let g:auto_source_first_time = 1
+" let g:auto_source_first_time = 1
 
 " gmail-commando.js
 let g:gmail_commando_map_translate = "<Leader>t"
@@ -199,9 +199,6 @@ let g:gmail_commando_label_shortcut = 1
 " statstat
 let g:statstat_autorun = "true"
 let g:statstat_interval = "500"
-" :tw用の文字数カウント
-" let g:statstat_expression = "let ([,,,as]=commands.parseCommand(commandline.command)) as.length"
-let g:statstat_expression = "let ([,,,as]=commands.parseCommand(commandline.command)) as.length"
 
 " slideshare.js
 nnoremap -urls=www\\.slideshare\\.net l :slideshare next<CR>
