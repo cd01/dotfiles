@@ -1,1 +1,1 @@
-dotfile�̊Ǘ�
+dotfileの管理
