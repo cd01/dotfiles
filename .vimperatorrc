@@ -210,35 +210,19 @@ nnoremap -urls=www\\.slideshare\\.net h :slideshare prev<CR>
 let g:twittperator_use_ssl_connection_for_api_ep = 1
 
 "=====================================================================
-" Ctrl+MでEnter
-"=====================================================================
-map <C-m> <CR>
-imap <C-m> <CR>
-
-"=====================================================================
-" Ctrl+HでBackspace
-"=====================================================================
-map <C-h> <Nop>
-map <C-h> <BS>
-imap <C-h> <Nop>
-imap <C-h> <BS>
-
-"=====================================================================
 " Vimperatorボタン
 "=====================================================================
 js <<EOM
 var button = document.getElementById("appmenu-button");
-
-// if (button) {
-//   button.label = config.name;
-//   options.add(["fxbuttonlabel"], "Edit Firefox button's label",
-//     "string", config.name, {
-//       setter: function (val) button.label = val,
-//       getter: function () button.label,
-//   });
-//   button.width = 120;
+if (button) {
+  button.label = config.name;
+  options.add(
+  ["fxbuttonlabel"], "Edit Firefox button's label", "string", config.name, {
+      setter: function (val) button.label = val,
+      getter: function () button.label,
+  });
   button.style.background = "#000000";
-// }
+}
 EOM
 
 "=====================================================================
@@ -257,23 +241,10 @@ lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p <Space> <S
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 
-"" new Twitter
-"fmaps -urls='^https?://twitter\.com/' j k ?
-"fmaps -urls='^https?://twitter\.com/' -events=vkeydown m r gh gr gp gf gm
-"fmaps -urls='^https?://twitter\.com/' -events=keydown c,<Esc>
-"
-"autocmd VimperatorEnter .* :loadplugins
-"autocmd VimperatorEnter .* :source ~/Dropbox/dotfiles/.vimperatorrc
-
-""" 指定したサイトに行ったら、自動でClearly起動　テスト
-" js <<EOM
-" function test_evernote() {
-"   if (gBrowser.contentDocument.getElementById('__readable_extension_definitions') == null) {
-"     __readable_by_evernote.readable_by_evernote__menu__call(buffer.URL);
-"   }
-" }
-" EOM
-" lazy autocmd PageLoad 'http://alfalfalfa\.com/.*' js test_evernote()
+" new Twitter
+fmaps -urls='^https?://twitter\.com/' j k ?
+fmaps -urls='^https?://twitter\.com/' -events=vkeydown m r gh gr gp gf gm
+fmaps -urls='^https?://twitter\.com/' -events=keydown c,<Esc>
 
 map ,r :source ~/.vimperatorrc<CR>:loadplugins<CR>:echo 'Reload .vimperatorrc and loadplugins!!'<CR>
 
@@ -281,3 +252,12 @@ map ,r :source ~/.vimperatorrc<CR>:loadplugins<CR>:echo 'Reload .vimperatorrc an
 js <<EOM
 config.dialogs.push([ 'sqlitemanager', 'SQLite Manager', function() openUILinkIn('chrome://sqlitemanager/content/sqlitemanager.xul', 'tab') ]);
 EOM
+
+" stylish.js
+noremap ,st :stylish turnall<CR>
+
+noremap ,t js <<EOM
+    var echofonListButton = document.getElementById("listsButton");
+    echofonListButton.click();
+EOM
+ 

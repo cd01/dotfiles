@@ -1,4 +1,4 @@
-colorscheme lucius 
+colorscheme jellybeans 
 
 " Windowsで開いたら全画面
 if has("win32") || has("win64")
@@ -6,6 +6,6 @@ if has("win32") || has("win64")
 endif
 
 set background=dark
-set guifont=Ricty:h13
+set guifont=Ricty:h11
 set guioptions-=m
 set guioptions-=T

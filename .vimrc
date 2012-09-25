@@ -1,17 +1,18 @@
 syntax on
 
 set number
-
 set backspace=2
-
 set expandtab
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set softtabstop=0
-" set smartindent
-set cindent
-
+set smartindent
 set incsearch
+set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,euc-jp,euc-ms,cp932
+if has("win32") || has("win64")
+  set encoding=cp932
+  set termencoding=cp932
+endif
 
 " -------------Vundle---------------------------------------------------------
 set nocompatible
@@ -26,34 +27,33 @@ else
 endif
 
 " vim-scripts リポジトリ (1)
-" Bundle "rails.vim"
-Bundle 'TwitVim'
 Bundle 'surround.vim'
 Bundle 'cake.vim'
 Bundle 'css_color.vim'
 Bundle 'Zenburn'
 Bundle 'molokai'
 Bundle 'desert.vim'
-" Bundle 'CSApprox'
 
 " github の任意のリポジトリ (2)
-" Bundle "tpope/vim-fugitive"
-Bundle 'Shougo/neocomplcache'  
-Bundle 'Shougo/unite.vim'
+" Bundle 'Shougo/neocomplcache'  
+" Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'thinca/vim-quickrun'
 Bundle "mattn/zencoding-vim"
-Bundle "mattn/favstar-vim"
 Bundle "mattn/webapi-vim"
-Bundle "mattn/googletasks-vim"
 Bundle "yuratomo/w3m.vim"
 Bundle "thinca/vim-guicolorscheme"
 Bundle "altercation/vim-colors-solarized"
-" Bundle "Lokaltog/vim-powerline"
+Bundle "Lokaltog/vim-powerline"
+" ↓ここから3つTweetVim関連
+Bundle "basyura/TweetVim"
+Bundle "tyru/open-browser.vim"
+Bundle "basyura/twibill.vim"
 " CakePHP Viewのシンタックスvim-cakehtmlをgithubに公開 - さかなチキンぱん。
 " http://d.hatena.ne.jp/naberon/20101012/vim_cakehtml
 Bundle "naberon/vim-cakehtml"
+Bundle "nanotech/jellybeans.vim"
 
 " github 以外のリポジトリ (3)
 " Bundle "git://git.wincent.com/command-t.git"
@@ -139,24 +139,12 @@ endfunction
 """ neocomplcache ===================================================================================
 let g:neocomplcache_enable_at_startup = 1 " 起動時に有効化
 
-""" twitvim ===================================================================================
-if has('win32')
-	:let twitvim_browser_cmd = 'C:\Program Files\Mozilla Firefox\firefox.exe'
-else
-	:let twitvim_browser_cmd = 'firefox'
-endif
-let twitvim_count = 200
-nnoremap ,tp :<C-u>PosttoTwitter<CR>
-nnoremap ,tf :<C-u>FriendsTwitter<CR><C-w>j
-nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
-nnoremap ,tr :<C-u>RepliesTwitter<CR><C-w>j
-nnoremap ,tn :<C-u>NextTwitter<CR>
-nnoremap ,tl :<C-u>ListTwitter list<CR><C-w>j
+""" tweetvim ===================================================================================
+nnoremap ,tt :<C-u>TweetVimCommandSay 
+nnoremap ,tl :<C-u>TweetVimListStatuses list<CR>
 
-" autocmd FileType twitvim call s:twitvim_my_settings()
-" function! s:twitvim_my_settings()
-"     set nowrap
-" endfunction
+let g:tweetvim_display_separator = 0
+let g:tweetvim_tweet_per_page = 200
 
 """ w3m.vim ===================================================================================
 let g:w3m#disable_vimproc = 1  
@@ -165,3 +153,14 @@ let g:w3m#homepage = "http://www.google.co.jp/"
 " set filetype
 autocmd BufNewFile,BufRead *.vimrc set filetype=vim
 autocmd BufNewFile,BufRead *.vimperatorrc set filetype=vim
+
+" powerline
+let g:Powerline_mode_v = "VISUAL"
+let g:Powerline_mode_V = "V:LINE"
+let g:Powerline_mode_cv = "V:BLOCK"
+let g:Powerline_mode_s = "SELECT"
+let g:Powerline_mode_S = "S:LINE"
+let g:Powerline_mode_cs = "S:BLOCK"
+let g:Powerline_mode_i = "INSERT"
+let g:Powerline_mode_R = "REPLACE"
+let g:Powerline_mode_n = "NORMAL"
