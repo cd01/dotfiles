@@ -1,9 +1,7 @@
-mklink "%HOME%/.vimrc" "%HOME%\Dropbox\dotfiles\.vimrc"
-mklink "%HOME%/.gvimrc" "%HOME%\Dropbox\dotfiles\.gvimrc"
-mklink "%HOME%/.vimshrc" "%HOME%\Dropbox\dotfiles\.vimshrc"
-mklink "%HOME%/.vimperatorrc" "%HOME%\Dropbox\dotfiles\.vimperatorrc"
-mklink /d "%HOME%/vimfiles" "%HOME%\Dropbox\dotfiles\.vim"
-mklink /d "%HOME%/vimperator" "%HOME%\Dropbox\dotfiles\.vimperator"
-mklink "%HOME%/.minttyrc" "%HOME%\Dropbox\dotfiles\.minttyrc"
-
-
+mklink "%USERPROFILE%/.vimrc" "%USERPROFILE%\Dropbox\dotfiles\.vimrc"
+mklink "%USERPROFILE%/.gvimrc" "%USERPROFILE%\Dropbox\dotfiles\.gvimrc"
+mklink "%USERPROFILE%/.vimshrc" "%USERPROFILE%\Dropbox\dotfiles\.vimshrc"
+mklink "%USERPROFILE%/.vimperatorrc" "%USERPROFILE%\Dropbox\dotfiles\.vimperatorrc"
+mklink /d "%USERPROFILE%/vimfiles" "%USERPROFILE%\Dropbox\dotfiles\.vim"
+mklink /d "%USERPROFILE%/vimperator" "%USERPROFILE%\Dropbox\dotfiles\.vimperator"
+mklink "%USERPROFILE%/.minttyrc" "%USERPROFILE%\Dropbox\dotfiles\.minttyrc"
