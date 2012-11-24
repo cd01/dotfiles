@@ -1,17 +1,7 @@
 " 3.3 (created: 2011/11/13 17:32:12)
 
 set history=5000
- 
-" win-mouse.js 
-" http://vimperator.g.hatena.ne.jp/nokturnalmortum/20110328/1301314461
-let g:win_mouse_auto_blur        = 500
-let g:win_mouse_map_move_left    = "<A-h>"
-let g:win_mouse_map_move_right   = "<A-l>"
-let g:win_mouse_map_move_up      = "<A-k>"
-let g:win_mouse_map_move_down    = "<A-j>"
-let g:win_mouse_map_left_click   = "<A-q>"
-let g:win_mouse_map_middle_click = "<A-w>"
-let g:win_mouse_map_right_click  = "<A-e>"
+colorscheme sweets_dita
 
 " undo limit
 set! browser.sessionstore.max_tabs_undo=100
@@ -29,7 +19,7 @@ set! ui.key.contentAccessKey=0
 
 """ twittperator.js
 " http://d.hatena.ne.jp/ruedap/touch/20110122/vimperator_twitter_plugin_twittperator
-nnoremap ,tp :<C-u>tw 
+nnoremap ,tp :<C-u>tw
 nnoremap ,tf :<C-u>tw!<CR>
 nnoremap ,tu :<C-u>tw!@<CR>
 
@@ -75,32 +65,15 @@ map <S-Left>  :tabmove! -1<CR>
 set titlestring=Vimperator
 
 "=====================================================================
-" 再起動すると、auto_source.jsが無効になってしまうので、起動時に読み込んでみる
-"=====================================================================
-" autocmd VimperatorEnter .* :aso ~/Dropbox/dotfiles/.vimperatorrc
-
-"=====================================================================
 " Evernote Clearly
 "=====================================================================
 noremap e :js __readable_by_evernote.readable_by_evernote__menu__call(buffer.URL);<CR>
 noremap E :js __readable_by_evernote.__readable_by_evernote__launch(true);<CR>
-" noremap E :js evernote_doAction( document.popupNode, 'CLIP_ACTION_SELECTION' );<CR>
-
-"=====================================================================
-" カラースキーム"
-"=====================================================================
-colorscheme sweets_dita
-" colorscheme indigo
 
 "=====================================================================
 " ヒントをアルファベットに
 "=====================================================================
 set hintchars=ifjklasdweuocvbnm
-
-"=====================================================================
-" アドオンインストール時の待ち時間カット
-"=====================================================================
-set! security.dialog_enable_delay=0
 
 "=====================================================================
 " 画像の多いタブを閉じた時にすぐにメモリ使用量を減らす
@@ -213,16 +186,8 @@ let g:twittperator_use_ssl_connection_for_api_ep = 1
 " Vimperatorボタン
 "=====================================================================
 js <<EOM
-var button = document.getElementById("appmenu-button");
-if (button) {
-  button.label = config.name;
-  options.add(
-  ["fxbuttonlabel"], "Edit Firefox button's label", "string", config.name, {
-      setter: function (val) button.label = val,
-      getter: function () button.label,
-  });
-  button.style.background = "#000000";
-}
+    var button = document.getElementById("appmenu-button");
+    if (button) button.style.background = "#000000";
 EOM
 
 "=====================================================================
@@ -241,23 +206,15 @@ lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p <Space> <S
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 
-" new Twitter
-fmaps -urls='^https?://twitter\.com/' j k ?
-fmaps -urls='^https?://twitter\.com/' -events=vkeydown m r gh gr gp gf gm
-fmaps -urls='^https?://twitter\.com/' -events=keydown c,<Esc>
-
 map ,r :source ~/.vimperatorrc<CR>:loadplugins<CR>:echo 'Reload .vimperatorrc and loadplugins!!'<CR>
 
 " :dia sqlitemanagerで起動できるらしい。要確認
 js <<EOM
-config.dialogs.push([ 'sqlitemanager', 'SQLite Manager', function() openUILinkIn('chrome://sqlitemanager/content/sqlitemanager.xul', 'tab') ]);
+    config.dialogs.push([ 'sqlitemanager', 'SQLite Manager', function() openUILinkIn('chrome://sqlitemanager/content/sqlitemanager.xul', 'tab') ]);
 EOM
 
 " stylish.js
 noremap ,st :stylish turnall<CR>
+noremap ,t js:var echofonListButton=document.getElementById("listsButton");echofonListButton.click();
 
-noremap ,t js <<EOM
-    var echofonListButton = document.getElementById("listsButton");
-    echofonListButton.click();
-EOM
- 
+noremap T :tabopen! 
