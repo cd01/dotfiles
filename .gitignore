@@ -1,3 +1,13 @@
-.vim/
 .vimperator/
-
+.vim/.backup
+.vim/autoload
+.vim/colors
+.vim/doc
+.vim/plugin
+.vim/spec
+.vim/syntax
+.vim/filetype.vim
+.vim/bundle/*/*
+!.vim/bundle/*/empty
+.vim/ftbundle/*/*/*
+!.vim/ftbundle/*/*/empty
