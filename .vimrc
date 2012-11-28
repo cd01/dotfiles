@@ -48,3 +48,10 @@ let g:Powerline_mode_n      = "NORMAL"
 
 " markdown
 autocmd BufRead,BufNewFile *.md  set filetype=mkd
+
+" zencoding
+let g:user_zen_settings = {
+\    'php' : {
+\        'dollar_expr' : 0,
+\    },
+\}
