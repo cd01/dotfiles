@@ -45,6 +45,9 @@ let g:Powerline_mode_cs     = "S:BLOCK"
 let g:Powerline_mode_i      = "INSERT"
 let g:Powerline_mode_R      = "REPLACE"
 let g:Powerline_mode_n      = "NORMAL"
+let g:Powerline_symbols     = 'fancy'
+set laststatus=2
+" set t_Co=256
 
 " markdown
 autocmd BufRead,BufNewFile *.md  set filetype=mkd
@@ -55,3 +58,5 @@ let g:user_zen_settings = {
 \        'dollar_expr' : 0,
 \    },
 \}
+
+autocmd FileType php :set dictionary=~/$VIMFILE_DIR/dict/php.dict
