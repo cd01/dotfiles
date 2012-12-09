@@ -47,7 +47,7 @@ let g:Powerline_mode_R      = "REPLACE"
 let g:Powerline_mode_n      = "NORMAL"
 let g:Powerline_symbols     = 'fancy'
 set laststatus=2
-" set t_Co=256
+set t_Co=256 " Linuxのターミナルのときだけ？
 
 " markdown
 autocmd BufRead,BufNewFile *.md  set filetype=mkd
@@ -60,3 +60,5 @@ let g:user_zen_settings = {
 \}
 
 autocmd FileType php :set dictionary=~/$VIMFILE_DIR/dict/php.dict
+
+nnoremap ,v :edit ~/Dropbox/dotfiles/.vimrc<CR>
