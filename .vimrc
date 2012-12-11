@@ -62,3 +62,5 @@ let g:user_zen_settings = {
 autocmd FileType php :set dictionary=~/$VIMFILE_DIR/dict/php.dict
 
 nnoremap ,v :edit ~/Dropbox/dotfiles/.vimrc<CR>
+
+" vim:set ts=4 sts=0 sw=4 fenc=utf8 ff=unix:

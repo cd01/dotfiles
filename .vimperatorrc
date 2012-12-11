@@ -6,10 +6,10 @@ colorscheme sweets_dita
 " undo limit
 set! browser.sessionstore.max_tabs_undo=100
 
-" ’PŒê‘I‘ğ‚Ì‰E‘¤‚ÌƒXƒy[ƒX‘I‘ğ‚ğs‚í‚È‚¢
+" å˜èªé¸æŠæ™‚ã®å³å´ã®ã‚¹ãƒšãƒ¼ã‚¹é¸æŠã‚’è¡Œã‚ãªã„
 set! layout.word_select.eat_space_to_next_word=false
 
-" ƒy[ƒW‚ÌƒAƒNƒZƒXƒL[‚ğ–³Œø‰»
+" ãƒšãƒ¼ã‚¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚­ãƒ¼ã‚’ç„¡åŠ¹åŒ–
 set! ui.key.generalAccessKey=0
 set! ui.key.contentAccessKey=0
 
@@ -23,7 +23,7 @@ nnoremap ,tp :<C-u>tw
 nnoremap ,tf :<C-u>tw!<CR>
 nnoremap ,tu :<C-u>tw!@<CR>
 
-" ŠeƒRƒ}ƒ“ƒhŒÄ‚Ño‚µ
+" å„ã‚³ãƒãƒ³ãƒ‰å‘¼ã³å‡ºã—
 " nnoremap <Leader>h :<C-u>hsearch<Space>
 " nnoremap <Leader>H :<C-u>hcopy<Space>
 " nnoremap <Leader>s :<C-u>viewSBMComments -type htdl -format=id,comment<CR>
@@ -54,13 +54,13 @@ nnoremap ,tu :<C-u>tw!@<CR>
 " silent qmark w http://twitter.com/home
 
 "=====================================================================
-" Shift + © ¨ ‚ÅŒ»İ‚Ìƒ^ƒu‚ÌˆÊ’u•ÏX
+" Shift + â† â†’ ã§ç¾åœ¨ã®ã‚¿ãƒ–ã®ä½ç½®å¤‰æ›´
 "=====================================================================
 map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
 "=====================================================================
-" ƒuƒ‰ƒEƒUƒ^ƒCƒgƒ‹‚Ì•ÏX
+" ãƒ–ãƒ©ã‚¦ã‚¶ã‚¿ã‚¤ãƒˆãƒ«ã®å¤‰æ›´
 "=====================================================================
 set titlestring=Vimperator
 
@@ -71,12 +71,12 @@ noremap e :js __readable_by_evernote.readable_by_evernote__menu__call(buffer.URL
 noremap E :js __readable_by_evernote.__readable_by_evernote__launch(true);<CR>
 
 "=====================================================================
-" ƒqƒ“ƒg‚ğƒAƒ‹ƒtƒ@ƒxƒbƒg‚É
+" ãƒ’ãƒ³ãƒˆã‚’ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆã«
 "=====================================================================
 set hintchars=ifjklasdweuocvbnm
 
 "=====================================================================
-" ‰æ‘œ‚Ì‘½‚¢ƒ^ƒu‚ğ•Â‚¶‚½‚É‚·‚®‚Éƒƒ‚ƒŠg—p—Ê‚ğŒ¸‚ç‚·
+" ç”»åƒã®å¤šã„ã‚¿ãƒ–ã‚’é–‰ã˜ãŸæ™‚ã«ã™ãã«ãƒ¡ãƒ¢ãƒªä½¿ç”¨é‡ã‚’æ¸›ã‚‰ã™
 "=====================================================================
 " http://space.geocities.yahoo.co.jp/gl/alice0775/view/20110416/1302920985
 set! image.mem.min_discard_timeout_ms=6000
@@ -92,18 +92,18 @@ let g:ex_ime_mode = "inactive"
 let g:textarea_ime_mode = "inactive"
 
 "=====================================================================
-" h/l‚Åƒ^ƒuˆÚ“®
+" h/lã§ã‚¿ãƒ–ç§»å‹•
 "=====================================================================
 nnoremap h gT
 nnoremap l gt
 
 "=====================================================================
-"textarea‚ğƒeƒLƒXƒgƒGƒfƒBƒ^‚Å•ÒW‚·‚é
+"textareaã‚’ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒ‡ã‚£ã‚¿ã§ç·¨é›†ã™ã‚‹
 "=====================================================================
 set editor='vim'
 
 "=====================================================================
-" ƒL[ƒ}ƒbƒv Key Mapping
+" ã‚­ãƒ¼ãƒãƒƒãƒ— Key Mapping
 "=====================================================================
 " mapname         normal   visual    ???     insert commandline
 " noremap           o        o        o        x         x
@@ -116,25 +116,25 @@ set editor='vim'
 "=====================================================================
 
 "=====================================================================
-" ƒ”ƒBƒWƒ…ƒAƒ‹ƒ‚[ƒh‚ÌƒJ[ƒ\ƒ‹¶‰EˆÚ“®‚àh,l
+" ãƒ´ã‚£ã‚¸ãƒ¥ã‚¢ãƒ«ãƒ¢ãƒ¼ãƒ‰ã®ã‚«ãƒ¼ã‚½ãƒ«å·¦å³ç§»å‹•ã‚‚h,l
 "=====================================================================
 vnoremap h <Left>
 vnoremap l <Right>
 
 "=====================================================================
-" JavaScript‚Å‚ÌƒEƒBƒ“ƒhƒEˆÚ“®EƒŠƒTƒCƒY‹‘”Û
+" JavaScriptã§ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç§»å‹•ãƒ»ãƒªã‚µã‚¤ã‚ºæ‹’å¦
 "=====================================================================
 set! dom.disable_window_move_resize=true
 
 "=====================================================================
-" V‹Kƒ^ƒu‚ğƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚Å
+" æ–°è¦ã‚¿ãƒ–ã‚’ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã§
 "=====================================================================
 set! browser.tabs.loadDivertedInBackground=true
 
 "=====================================================================
-" vimp‚©‚ç‚Í‚ÄƒuƒAƒhƒIƒ“‘€ì
+" vimpã‹ã‚‰ã¯ã¦ãƒ–ã‚¢ãƒ‰ã‚ªãƒ³æ“ä½œ
 "=====================================================================
-" https://github.com/hatena/hatena-bookmark-xul/wiki/Vimperator-‚Å‚Í‚Ä‚ÈƒuƒbƒNƒ}[ƒNŠg’£‚ğg‚¤
+" https://github.com/hatena/hatena-bookmark-xul/wiki/Vimperator-ã§ã¯ã¦ãªãƒ–ãƒƒã‚¯ãƒãƒ¼ã‚¯æ‹¡å¼µã‚’ä½¿ã†
 " http://d.hatena.ne.jp/ruedap/20110407/vimperator_hatena_bookmark_firefox_operation
 js <<EOM
 liberator.globalVariables.hBookmark_shortcuts = { 
@@ -178,12 +178,12 @@ nnoremap -urls=www\\.slideshare\\.net l :slideshare next<CR>
 nnoremap -urls=www\\.slideshare\\.net h :slideshare prev<CR>
 
 "=====================================================================
-" Twittperator SSL‚ÅÚ‘±
+" Twittperator SSLã§æ¥ç¶š
 "=====================================================================
 let g:twittperator_use_ssl_connection_for_api_ep = 1
 
 "=====================================================================
-" Vimperatorƒ{ƒ^ƒ“
+" Vimperatorãƒœã‚¿ãƒ³
 "=====================================================================
 js <<EOM
     var button = document.getElementById("appmenu-button");
@@ -191,7 +191,7 @@ js <<EOM
 EOM
 
 "=====================================================================
-"‘I‘ğ‚µ‚½•¶š—ñ‚ğCtrl+G‚ÅŒŸõ  http://memo.officebrook.net/20090803.html#p01
+"é¸æŠã—ãŸæ–‡å­—åˆ—ã‚’Ctrl+Gã§æ¤œç´¢  http://memo.officebrook.net/20090803.html#p01
 "=====================================================================
 vmap <silent> <C-g> y<Esc><Esc>P
 
@@ -208,7 +208,7 @@ lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 
 map ,r :source ~/.vimperatorrc<CR>:loadplugins<CR>:echo 'Reload .vimperatorrc and loadplugins!!'<CR>
 
-" :dia sqlitemanager‚Å‹N“®‚Å‚«‚é‚ç‚µ‚¢B—vŠm”F
+" :dia sqlitemanagerã§èµ·å‹•ã§ãã‚‹ã‚‰ã—ã„ã€‚è¦ç¢ºèª
 js <<EOM
     config.dialogs.push([ 'sqlitemanager', 'SQLite Manager', function() openUILinkIn('chrome://sqlitemanager/content/sqlitemanager.xul', 'tab') ]);
 EOM
@@ -219,3 +219,4 @@ noremap ,t js:var echofonListButton=document.getElementById("listsButton");echof
 
 noremap T :tabopen! 
 
+" vim: set ts=4 sts=0 sw=4 fenc=utf8 ff=unix ft=vimperator:
