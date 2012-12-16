@@ -1,8 +1,9 @@
 syntax on
 
+
 set number
 set backspace=2
-set expandtab
+" set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0
@@ -10,12 +11,15 @@ set cindent
 set incsearch
 set fileencodings=utf-8,euc-jp,cp932
 set list
-set listchars=tab:^-,trail:-
 set swapfile
 set directory=~/.vimswap
 set backup
 set backupdir=~/.vimbackup
 let &directory = &backupdir
+
+set encoding=utf-8
+set listchars=tab:»-,trail:_,eol:↲
+" set listchars=tab:^-,trail:-,eol:¶
 
 " OS毎に.vimの読み込み先を変える
 let $VIMFILE_DIR = (has("win32") || has("win64")) ? 'vimfiles' : '.vim'
