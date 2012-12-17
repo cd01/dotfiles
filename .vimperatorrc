@@ -226,7 +226,7 @@ let g:twittperator_screen_name = "CD01_"
 let g:twittperator_history_limit = 5000
 let g:twittperator_lang = "ja"
 let g:twittperator_count = 50
-" let g:twittperator_track_words = "vimp,vimperator,gNTPdate,Twittperator,ついっぺ,ツイッペ,twsidebar"
+let g:twittperator_track_words = "vimp,vimperator,gNTPdate,Twittperator,ついっぺ,ツイッペ,twsidebar,Powershell"
 let g:twittperator_plugin_pong = 1
 let g:twittperator_plugin_add_url_completer = 1
 let g:twittperator_plugin_rt = 1
@@ -251,7 +251,7 @@ js<<EOM
 
   liberator.globalVariables.twittperator_sidebar_config = {
     // for Keyword タグ
-    // keyword: /neko|vimp|cat|猫/i,
+     keyword: /neko|vimp|cat|猫/i,
 
     // ツイート内に含まれると、表示上抹殺される (reply とか除く
     vanish: /うぎぃいいい/i,
@@ -284,7 +284,7 @@ js<<EOM
     listMax: 100,
 
     // 日本語だけ for filter stream
-    jpOnly: true,
+    jpOnly: false,
 
     // リストの最大保持数
     listMax: 200,
@@ -299,8 +299,9 @@ js<<EOM
     dontStop: true,
 
     // 地震ツイートの本文に場所をくっつける
-    earthquake: true,
+    // earthquake: true,
   };
+
 })();
 EOM
 
