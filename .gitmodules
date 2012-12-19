@@ -1,0 +1,6 @@
+[submodule "master"]
+	path = master
+	url = https://github.com/basyura/TweetVim
+[submodule ".vim\\bundle\\TweetVim"]
+	path = .vim\\bundle\\TweetVim
+	url = https://github.com/basyura/TweetVim
