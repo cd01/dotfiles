@@ -3,7 +3,7 @@ tags-ja
 
 .vimperator/
 .vim/.backup
-.vim/bundle
+.vim/bundle/*/doc/tags*
 .vim/autoload
 .vim/colors
 .vim/doc
