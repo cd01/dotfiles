@@ -26,7 +26,7 @@ let $VIMFILE_DIR = (has("win32") || has("win64")) ? 'vimfiles' : '.vim'
 helptags ~/$VIMFILE_DIR/doc
 
 " Unvundle
-runtime bundle/vim-unbundle/unbundle.vim
+runtime bundle/unbundle/unbundle.vim
 
 " Tweetvim
 nnoremap ,tt :<C-u>TweetVimCommandSay
