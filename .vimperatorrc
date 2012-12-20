@@ -307,4 +307,7 @@ EOM
 
 let g:twittperator_plugin_twsidebar_expand_url = 1
 
+" plugin管理？？
+source ~/vimperator/bundle/_smooziee.js
+
 " vim: set ts=4 sts=0 sw=4 fenc=utf8 ff=unix ft=vimperator:
