@@ -1,0 +1,13 @@
+tags
+tags-ja
+
+.vimperator/
+.vim/.backup
+.vim/bundle/*/doc/tags*
+.vim/autoload
+.vim/colors
+.vim/doc
+.vim/plugin
+.vim/spec
+.vim/syntax
+.vim/filetype.vim

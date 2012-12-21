@@ -1,0 +1,54 @@
+[submodule ".vim/bundle/solarized"]
+	path = .vim/bundle/solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule ".vim/bundle/molokai"]
+	path = .vim/bundle/molokai
+	url = git://github.com/tomasr/molokai.git
+[submodule ".vim/bundle/jellybeans"]
+	path = .vim/bundle/jellybeans
+	url = git://github.com/nanotech/jellybeans.vim.git
+[submodule ".vim/bundle/powerline"]
+	path = .vim/bundle/powerline
+	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule ".vim/bundle/quickrun"]
+	path = .vim/bundle/quickrun
+	url = git://github.com/thinca/vim-quickrun.git
+[submodule ".vim/bundle/zenburn"]
+	path = .vim/bundle/zenburn
+	url = git://github.com/vim-scripts/Zenburn.git
+[submodule ".vim/bundle/zencoding"]
+	path = .vim/bundle/zencoding
+	url = git://github.com/mattn/zencoding-vim.git
+[submodule ".vim/bundle/surround"]
+	path = .vim/bundle/surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/unbundle"]
+	path = .vim/bundle/unbundle
+	url = git://github.com/sunaku/vim-unbundle.git
+[submodule ".vim/ftbundle/coffee/vim-coffee-script"]
+	path = .vim/ftbundle/coffee/vim-coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule ".vim/ftbundle/javascript/vim-javascript-syntax"]
+	path = .vim/ftbundle/javascript/vim-javascript-syntax
+	url = git://github.com/jelera/vim-javascript-syntax.git
+[submodule ".vim/ftbundle/javascript/jscomplete-vim"]
+	path = .vim/ftbundle/javascript/jscomplete-vim
+	url = git://github.com/teramako/jscomplete-vim.git
+[submodule ".vim/ftbundle/markdown/vim-markdown"]
+	path = .vim/ftbundle/markdown/vim-markdown
+	url = git://github.com/tpope/vim-markdown.git
+[submodule ".vim/ftbundle/markdown/mkdpreview-vim"]
+	path = .vim/ftbundle/markdown/mkdpreview-vim
+	url = git://github.com/mattn/mkdpreview-vim.git
+[submodule ".vim/ftbundle/php/php.vim"]
+	path = .vim/ftbundle/php/php.vim
+	url = git://github.com/StanAngeloff/php.vim.git
+[submodule ".vim/ftbundle/php/php-complete"]
+	path = .vim/ftbundle/php/php-complete
+	url = git://github.com/shawncplus/phpcomplete.vim.git
+[submodule ".vim/ftbundle/ps1/vim-ps1"]
+	path = .vim/ftbundle/ps1/vim-ps1
+	url = git://github.com/PProvost/vim-ps1.git
+[submodule ".vim/ftbundle/python/jedi-vim"]
+	path = .vim/ftbundle/python/jedi-vim
+	url = git://github.com/davidhalter/jedi-vim.git
