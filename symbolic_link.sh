@@ -5,4 +5,3 @@ ln -s ~/Dropbox/dotfiles/.vimshrc ~/.vimshrc
 ln -s ~/Dropbox/dotfiles/.vimperatorrc ~/.vimperatorrc
 ln -s ~/Dropbox/dotfiles/.vimperator ~/.vimperator
 ln -s ~/Dropbox/dotfiles/.zshrc ~/.zshrc
-

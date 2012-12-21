@@ -54,4 +54,3 @@ function print_known_hosts (){
     fi
 }
 _cache_hosts=($( print_known_hosts ))
-
