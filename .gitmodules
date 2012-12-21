@@ -25,3 +25,30 @@
 [submodule ".vim/bundle/unbundle"]
 	path = .vim/bundle/unbundle
 	url = git://github.com/sunaku/vim-unbundle.git
+[submodule ".vim/ftbundle/coffee/vim-coffee-script"]
+	path = .vim/ftbundle/coffee/vim-coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule ".vim/ftbundle/javascript/vim-javascript-syntax"]
+	path = .vim/ftbundle/javascript/vim-javascript-syntax
+	url = git://github.com/jelera/vim-javascript-syntax.git
+[submodule ".vim/ftbundle/javascript/jscomplete-vim"]
+	path = .vim/ftbundle/javascript/jscomplete-vim
+	url = git://github.com/teramako/jscomplete-vim.git
+[submodule ".vim/ftbundle/markdown/vim-markdown"]
+	path = .vim/ftbundle/markdown/vim-markdown
+	url = git://github.com/tpope/vim-markdown.git
+[submodule ".vim/ftbundle/markdown/mkdpreview-vim"]
+	path = .vim/ftbundle/markdown/mkdpreview-vim
+	url = git://github.com/mattn/mkdpreview-vim.git
+[submodule ".vim/ftbundle/php/php.vim"]
+	path = .vim/ftbundle/php/php.vim
+	url = git://github.com/StanAngeloff/php.vim.git
+[submodule ".vim/ftbundle/php/php-complete"]
+	path = .vim/ftbundle/php/php-complete
+	url = git://github.com/shawncplus/phpcomplete.vim.git
+[submodule ".vim/ftbundle/ps1/vim-ps1"]
+	path = .vim/ftbundle/ps1/vim-ps1
+	url = git://github.com/PProvost/vim-ps1.git
+[submodule ".vim/ftbundle/python/jedi-vim"]
+	path = .vim/ftbundle/python/jedi-vim
+	url = git://github.com/davidhalter/jedi-vim.git
