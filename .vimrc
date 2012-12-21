@@ -18,8 +18,8 @@ set backupdir=~/.vimbackup
 let &directory = &backupdir
 
 set encoding=utf-8
-set listchars=tab:»-,trail:_,eol:↲
-" set listchars=tab:^-,trail:-,eol:¶
+set listchars=tab:»-,trail:_,eol:¶
+" set listchars=tab:^-:
 
 " OS毎に.vimの読み込み先を変える
 let $VIMFILE_DIR = (has("win32") || has("win64")) ? 'vimfiles' : '.vim'
