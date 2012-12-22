@@ -170,8 +170,9 @@ let g:gmail_commando_map_unimportant = "<Leader>I"
 let g:gmail_commando_label_shortcut = 1
 
 " statstat
+let g:statstat_expression = "let ([,,,as]=commands.parseCommand(commandline.command)) new Date().toLocaleString() + ' [文字数:' + as.length + ']'"
 let g:statstat_autorun = "true"
-let g:statstat_interval = "500"
+let g:statstat_interval = "300"
 
 " slideshare.js
 nnoremap -urls=www\\.slideshare\\.net l :slideshare next<CR>
@@ -306,6 +307,10 @@ js<<EOM
 EOM
 
 let g:twittperator_plugin_twsidebar_expand_url = 1
+
+lazy source ~/Dropbox/dev/vimperator-plugin.twsidebar.moveCommand/twsidebarMoveCommand.js
+noremap <C-N> :twsidebarDown<CR>
+noremap <C-P> :twsidebarUp<CR>
 
 " =================================================
 
