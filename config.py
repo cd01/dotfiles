@@ -1,6 +1,7 @@
-﻿# TODO:外部ファイル化して、javascriptを圧縮するやつとか入れてみたい
+# TODO:外部ファイル化して、javascriptを圧縮するやつとか入れてみたい
 # TODO:if 1は必要か？
 from keyhac import *
+import pyauto
 import os
 homeDir = os.environ.get('HOME', "")
 
@@ -130,3 +131,64 @@ def configure(keymap):
             ( u"定型文",         cblister_FixedPhrase(fixed_items) ),
             ( u"日時",           cblister_FixedPhrase(date_and_time_items) ),
         ]
+
+    ## バルーンヘルプ（ツールチップ）を指定の位置に開く
+    #
+    # keyhac_keymap.py / popBalloon() を流用
+    #
+    def pop_balloon(name, text, timeout=None, pos=None):
+        if pos == None:
+            # オフセット量
+            OFFSET_X = 0
+            OFFSET_Y = -20
+
+            # マウスカーソルの位置を取得
+            pos_x, pos_y = pyauto.Input.getCursorPos()
+            pos_x += OFFSET_X
+            pos_y += OFFSET_Y
+        else:
+            pos_x, pos_y = pos
+
+        keymap.balloon.setText(pos_x, pos_y, text)
+
+        if keymap.balloon_timer:
+            keymap.killTimer(keymap.balloon_timer)
+            keymap.balloon_timer = None
+
+        if timeout:
+            def onTimerCloseBalloon():
+                keymap.closeBalloon(name)
+            keymap.balloon_timer = onTimerCloseBalloon
+            keymap.setTimer(keymap.balloon_timer, timeout)
+
+        keymap.balloon_name = name
+
+    ## カーソル位置のRGB情報取得
+    def color_picker():
+        root = pyauto.Window.getDesktop()
+        img = root.getImage()
+
+        width, height = img.getSize()
+        x, y = pyauto.Input.getCursorPos()
+
+        if not (0 <= x < width and 0 <= y < height):
+            rgb = u"範囲外"
+        else:
+            start = (width * y + x) * 3
+            buf = img.getBuffer()[start:start + 3]
+            r, g, b = [ord(c) for c in buf]
+
+            if 0:  # 10進表記
+                rgb = u"(%d,%d,%d)" % (r, g, b)
+            else:  # 16進表記
+                hex_24_bit = lambda val: u"#%06X" % val
+                rgb = hex_24_bit((0x10000 * r) + (0x100 * g) + b)
+
+        pop_balloon("color_picker", rgb, 1500)
+        setClipboardText(rgb)
+        print rgb
+
+    keymap_global = keymap.defineWindowKeymap()
+
+    # カーソル位置のRGB情報取得
+    keymap_global["W-c"] = color_picker
