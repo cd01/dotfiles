@@ -7,15 +7,18 @@
 [submodule ".vim/bundle/jellybeans"]
 	path = .vim/bundle/jellybeans
 	url = git://github.com/nanotech/jellybeans.vim.git
+	ignore = dirty
 [submodule ".vim/bundle/powerline"]
 	path = .vim/bundle/powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
 [submodule ".vim/bundle/quickrun"]
 	path = .vim/bundle/quickrun
 	url = git://github.com/thinca/vim-quickrun.git
+	ignore = dirty
 [submodule ".vim/bundle/zenburn"]
 	path = .vim/bundle/zenburn
 	url = git://github.com/vim-scripts/Zenburn.git
+	ignore = dirty
 [submodule ".vim/bundle/zencoding"]
 	path = .vim/bundle/zencoding
 	url = git://github.com/mattn/zencoding-vim.git
@@ -25,6 +28,7 @@
 [submodule ".vim/bundle/unbundle"]
 	path = .vim/bundle/unbundle
 	url = git://github.com/sunaku/vim-unbundle.git
+	ignore = dirty
 [submodule ".vim/ftbundle/coffee/vim-coffee-script"]
 	path = .vim/ftbundle/coffee/vim-coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
