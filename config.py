@@ -192,3 +192,6 @@ def configure(keymap):
 
     # カーソル位置のRGB情報取得
     keymap_global["W-c"] = color_picker
+
+
+# vim: set expandtab:
