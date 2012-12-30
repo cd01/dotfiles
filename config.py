@@ -59,15 +59,16 @@ def configure(keymap):
         keymap_global[ "Alt-4" ] = keymap.command_RecordClear
 
     # USER0-E : アクティブ化するか、まだであれば起動する
-    def command_ActivateOrExecute( class_name, filename, param = u"", directory = u"" ):
-        wnd = Window.find( class_name, None )
+    def command_ActivateOrExecute( className, filename, param = u"", directory = u"" ):
+        wnd = Window.find( className, None )
         if wnd:
             if wnd.isMinimized():
                 wnd.restore()
             wnd = wnd.getLastActivePopup()
             wnd.setForeground()
         else:
-            executeFunc = keymap.command_ShellExecute( None, None, filename, param, directory )
+            swMaximize = 3;
+            executeFunc = keymap.command_ShellExecute( None, None, filename, param, directory, swMaximize )
             executeFunc()
 
     keymap_global[ "C-S-P" ] = lambda: command_ActivateOrExecute( "CkwWindowClass"       , homeDir + "/tools/ckw/ckw.exe" )
