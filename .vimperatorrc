@@ -3,6 +3,12 @@
 set history=5000
 colorscheme sweets_dita
 
+js<<EOM
+  // vimperator/info のパスを変える
+  // FIXME:twsidebar が動かなくなる。
+  liberator.modules.storage.infoPath.initWithPath(File.expandPath("~/vimperatorInfo"));
+EOM
+
 " undo limit
 set! browser.sessionstore.max_tabs_undo=100
 
@@ -170,9 +176,9 @@ let g:gmail_commando_map_unimportant = "<Leader>I"
 let g:gmail_commando_label_shortcut = 1
 
 " statstat
-let g:statstat_expression = "let ([,,,as]=commands.parseCommand(commandline.command)) new Date().toLocaleString() + ' [文字数:' + as.length + ']'"
-let g:statstat_autorun = "true"
-let g:statstat_interval = "300"
+let g:statstat_expression = "let (output = function(){ let [,cmd,,arg1] = commands.parseCommand(commandline.command); if (cmd === 'tw') { return (arg1.length <= 140) ? '文字数:' + arg1.length : '字数オーバー:' + arg1.length; } else { return new Date().toLocaleString(); } }) output();"
+let g:statstat_autorun    = "true"
+let g:statstat_interval   = "300"
 
 " slideshare.js
 nnoremap -urls=www\\.slideshare\\.net l :slideshare next<CR>
@@ -227,7 +233,7 @@ let g:twittperator_screen_name = "CD01_"
 let g:twittperator_history_limit = 5000
 let g:twittperator_lang = "ja"
 let g:twittperator_count = 50
-let g:twittperator_track_words = "vimp,vimperator,gNTPdate,Twittperator,ついっぺ,ツイッペ,twsidebar,Powershell"
+let g:twittperator_track_words = "vimp,vimperator,Twittperator,ついっぺ,ツイッペ,twsidebar"
 let g:twittperator_plugin_pong = 1
 let g:twittperator_plugin_add_url_completer = 1
 let g:twittperator_plugin_rt = 1
@@ -252,7 +258,7 @@ js<<EOM
 
   liberator.globalVariables.twittperator_sidebar_config = {
     // for Keyword タグ
-     keyword: /neko|vimp|cat|猫/i,
+     keyword: /vimeditor|vimperator/i,
 
     // ツイート内に含まれると、表示上抹殺される (reply とか除く
     vanish: /うぎぃいいい/i,
@@ -264,8 +270,8 @@ js<<EOM
     myNames: /cd01_/i,
 
     // ログファイル てけとーなフォーマットで保存されます
-    //logFile: io.File('~/.chirpstream'),
-    //myLogFile: io.File('~/.mychirpstream'),
+    logFile: io.File('~/.chirpstream'),
+    myLogFile: io.File('~/.mychirpstream'),
 
     // 各イベント時に音がなる
     sound: {
@@ -315,14 +321,13 @@ noremap <C-P> :twsidebarUp<CR>
 " =================================================
 
 " plugin管理 vimpr
-source ~/vimperator/bundle/_smooziee/_smooziee.js
+source ~/Dropbox/dotfiles/.vimperator/bundle/_smooziee/_smooziee.js
 
 " bundle.js
-source ~/vimperator/plugin/_libly.js
+let g:bundlejs_vimperator_dir = "~/Dropbox/dotfiles/.vimperator"
+source ~/Dropbox/dotfiles/.vimperator/plugin/_libly.js
 source ~/Dropbox/dev/vimperator-plugin.bundlejs/bundle.js
-" TODO:git cloneするディレクトリ設定できるようにした方がいい
 Bundle 'cd01/vimperator-plugin.evernote.clearly'
-Bundle 'teramako/text-hatena.js'
 
 " =================================================
 
