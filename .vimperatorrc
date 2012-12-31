@@ -2,10 +2,10 @@
 
 set history=5000
 colorscheme sweets_dita
+set novisualbell
 
 js<<EOM
   // vimperator/info のパスを変える
-  // FIXME:twsidebar が動かなくなる。
   liberator.modules.storage.infoPath.initWithPath(File.expandPath("~/vimperatorInfo"));
 EOM
 
@@ -66,15 +66,10 @@ map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
 "=====================================================================
-" ブラウザタイトルの変更
-"=====================================================================
-set titlestring=Vimperator
-
-"=====================================================================
 " Evernote Clearly
 "=====================================================================
-noremap e :js __readable_by_evernote.readable_by_evernote__menu__call(buffer.URL);<CR>
-noremap E :js __readable_by_evernote.__readable_by_evernote__launch(true);<CR>
+nnoremap e :clearly<CR>
+nnoremap E :clearly save<CR>
 
 "=====================================================================
 " ヒントをアルファベットに
@@ -90,11 +85,11 @@ set! image.mem.min_discard_timeout_ms=6000
 "=====================================================================
 " ime_controller.js
 "=====================================================================
-" auto"     : No change  
-" active"   : Initially IME on  
-" inactive" : Initially IME off  
+" auto"     : No change
+" active"   : Initially IME on
+" inactive" : Initially IME off
 " disabled" : Disable IME
-let g:ex_ime_mode = "inactive"  
+let g:ex_ime_mode = "inactive"
 let g:textarea_ime_mode = "inactive"
 
 "=====================================================================
