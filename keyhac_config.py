@@ -73,7 +73,7 @@ def configure(keymap):
             executeFunc()
 
     keymap_global[ "C-S-P" ] = lambda: command_ActivateOrExecute( "CkwWindowClass"       , homeDir + "/tools/ckw/ckw.exe" )
-    keymap_global[ "C-S-G" ] = lambda: command_ActivateOrExecute( "Vim"                  , homeDir + "/bin/vim73-kaoriya-win64/gvim.exe" )
+    keymap_global[ "C-S-G" ] = lambda: command_ActivateOrExecute( "Vim"                  , homeDir + "/tools/vim/gvim.exe" )
     keymap_global[ "C-S-Q" ] = lambda: command_ActivateOrExecute( "TSubForm.UnicodeClass", homeDir + "/tools/Mery/Mery.exe" )
     keymap_global[ "C-S-M" ] = lambda: command_ActivateOrExecute( "mintty"               , "C:/MinGW/msys/1.0/bin/mintty.exe", u"/bin/bash --login -i" )
     keymap_global[ "C-S-I" ] = lambda: command_ActivateOrExecute( "IEFrame"              , "C:/Program Files/Internet Explorer/iexplore.exe" )
