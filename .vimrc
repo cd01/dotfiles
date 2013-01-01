@@ -20,10 +20,11 @@ let &directory = &backupdir
 set encoding=utf-8
 set listchars=tab:»-,trail:_,eol:¶
 " set listchars=tab:^-:
+set helplang=en,ja
 
 " OS毎に.vimの読み込み先を変える
 let $VIMFILE_DIR = (has("win32") || has("win64")) ? 'vimfiles' : '.vim'
-helptags ~/$VIMFILE_DIR/doc
+" helptags ~/$VIMFILE_DIR/doc
 
 " Unvundle
 runtime bundle/unbundle/unbundle.vim
