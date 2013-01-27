@@ -5,7 +5,7 @@ colorscheme sweets_dita
 set novisualbell
 
 js<<EOM
-  // vimperator/info のパスを変える
+  // vimperator/info/default のパスを変える
   liberator.modules.storage.infoPath.initWithPath(File.expandPath("~/vimperatorInfo"));
 EOM
 
@@ -229,6 +229,13 @@ noremap ,t js:var echofonListButton=document.getElementById("listsButton");echof
 
 noremap T :tabopen! 
 
+" bash emacsモード風
+cnoremap <C-y> <C-z>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+
 let g:twittperator_use_ssl_connection_for_api_ep = 1
 let g:twittperator_use_chirp = 1
 let g:twittperator_plugin_twsidebar = 1
@@ -310,6 +317,8 @@ js<<EOM
 
     // 地震ツイートの本文に場所をくっつける
     // earthquake: true,
+
+    tweetTimeVisible: true,
   };
 
 })();

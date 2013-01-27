@@ -12,7 +12,7 @@ def configure(keymap):
 
     # プログラムのファイルパスを設定 (単純な使用方法)
     if 1:
-        keymap.editor = homeDir + u"/bin/vim73-kaoriya-win64/gvim.exe"
+        keymap.editor = homeDir + u"/tools/vim/gvim.exe"
 
     # 呼び出し可能オブジェクトを設定 (高度な使用方法)
     if 0:
@@ -163,7 +163,8 @@ def configure(keymap):
 
         keymap.balloon_name = name
 
-    ## カーソル位置のRGB情報取得
+    # カーソル位置のRGB情報取得
+    # http://d.hatena.ne.jp/Koonies/20110809/keyhac_colorpicker
     def color_picker():
         root = pyauto.Window.getDesktop()
         img = root.getImage()

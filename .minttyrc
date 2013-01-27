@@ -1,7 +1,7 @@
 BoldAsFont=no
-Font=Ricty Diminished Discord
+Font=@‚ ‚¸‚«ƒtƒHƒ“ƒg
 Charset=UTF-8
-FontHeight=12
+FontHeight=13
 Columns=100
 Rows=34
 Transparency=medium
@@ -30,3 +30,4 @@ Cyan=42,161,152
 BoldCyan=147,161,161
 White=238,232,213
 BoldWhite=253,246,227
+FontIsBold=yes
