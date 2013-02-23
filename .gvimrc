@@ -1,4 +1,4 @@
-colorscheme base16-tomorrow
+colorscheme hybrid
 
 " Windowsで開いたら全画面
 if has("win32") || has("win64")
