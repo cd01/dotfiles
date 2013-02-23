@@ -63,3 +63,12 @@
 [submodule ".vim/bundle/base16-vim"]
 	path = .vim/bundle/base16-vim
 	url = git://github.com/chriskempson/base16-vim.git
+[submodule ".vim/bundle/vim-hybrid"]
+	path = .vim/bundle/vim-hybrid
+	url = git://github.com/w0ng/vim-hybrid.git
+[submodule ".vim/bundle/vim-railscasts-theme"]
+	path = .vim/bundle/vim-railscasts-theme
+	url = git://github.com/jpo/vim-railscasts-theme.git
+[submodule ".vim/bundle/twilight"]
+	path = .vim/bundle/twilight
+	url = git://github.com/vim-scripts/twilight.git
