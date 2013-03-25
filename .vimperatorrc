@@ -2,7 +2,7 @@
 
 set history=5000
 colorscheme sweets_dita
-set novisualbell
+set gui=nobookmarks,nomenu,nohatehaBookmarks,nonavigation
 
 js<<EOM
   // vimperator/info/default のパスを変える
@@ -22,12 +22,6 @@ set! ui.key.contentAccessKey=0
 " (t) tumblr
 " nnoremap <Leader>tr :<C-u>tombloo ReBlog<Space>-<Space>Tumblr
 " nnoremap <Leader>tt :<C-u>tombloo<Space>
-
-""" twittperator.js
-" http://d.hatena.ne.jp/ruedap/touch/20110122/vimperator_twitter_plugin_twittperator
-nnoremap ,tp :<C-u>tw
-nnoremap ,tf :<C-u>tw!<CR>
-nnoremap ,tu :<C-u>tw!@<CR>
 
 " 各コマンド呼び出し
 " nnoremap <Leader>h :<C-u>hsearch<Space>
@@ -235,6 +229,7 @@ cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
+cnoremap <C-w> <C-BS>
 
 let g:twittperator_use_ssl_connection_for_api_ep = 1
 let g:twittperator_use_chirp = 1
@@ -318,6 +313,7 @@ js<<EOM
     // 地震ツイートの本文に場所をくっつける
     // earthquake: true,
 
+    // 時間とかRTした人のIDとかの表示
     tweetTimeVisible: true,
   };
 
@@ -325,10 +321,6 @@ js<<EOM
 EOM
 
 let g:twittperator_plugin_twsidebar_expand_url = 1
-
-lazy source ~/Dropbox/dev/vimperator-plugin.twsidebar.moveCommand/twsidebarMoveCommand.js
-noremap <C-N> :twsidebarDown<CR>
-noremap <C-P> :twsidebarUp<CR>
 
 " =================================================
 
@@ -341,6 +333,26 @@ source ~/Dropbox/dotfiles/.vimperator/plugin/_libly.js
 source ~/Dropbox/dev/vimperator-plugin.bundlejs/bundle.js
 Bundle 'cd01/vimperator-plugin.evernote.clearly'
 
+source ~/Dropbox/dotfiles/.vimperator/bundle/twsidebar.smoothScroll/twsidebar.smoothScroll.js
+lazy source ~/Dropbox/dev/vimperator-plugin.twsidebar.moveCommand/twsidebarMoveCommand.js
+
 " =================================================
+
+style -name tw-sidebar-hidden-time chrome://* .tw-anekos-sb-plugin-tweet-panel { border-radius: 5px; margin: 2px; background-color: #073642 !important; color: #839496;} .tw-anekos-sb-plugin-item-sub { border-radius: 5px; background-color: #268bd2 !important; color: #073642 } .tw-anekos-sb-plugin-tweet-reply-my { background-color: #eee8d5 !important; } #tw-sidebar-page .scrollbox-innerbox { background-color: #586e75 !important; } .tw-anekos-sb-plugin-item-name.tw-anekos-sb-plugin-tweet-protected { border-radius: 5px; } .tw-anekos-sb-plugin-tweet-panel > hbox > vbox:first-child > image { display: inline-block; border: solid 1px #000; overflow: hidden; border-radius: 10px; }
+
+js<<EOM
+commands.addUserCommand(
+  ['pikadorei'],
+  'You Slave of Pika!',
+  function () {
+    let (doc=content.document,colors='red green blue'.split(/\s/),i=0)
+      setInterval(function() doc.body.style.backgroundColor=colors[(i++,i%=colors.length)], 100)
+  },
+  {},
+  true
+);
+EOM
+
+so ~/Dropbox/dev/vimperator-plugin.suddendeath/suddendeath.js
 
 " vim: set ts=4 sts=0 sw=4 fenc=utf8 ff=unix ft=vimperator:
