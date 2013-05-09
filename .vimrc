@@ -4,11 +4,13 @@ syntax on
 set number
 set backspace=2
 " set expandtab
+set nf=alpha,hex "インクリメントで使用するフォーマットをアルファベットと16進数に指定（8進数を除去）
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0
 set cindent
 set incsearch
+set ff=unix
 set fileencodings=utf-8,euc-jp,cp932
 set list
 set swapfile
