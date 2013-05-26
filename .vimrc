@@ -40,7 +40,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Recommended to install
 " After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
-NeoBundle 'Shougo/vimproc'
+" NeoBundle 'Shougo/vimproc'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
@@ -56,6 +56,7 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'kien/ctrlp.vim'
 
 NeoBundleLazy 'mattn/zencoding-vim', {'autoload': {'filetypes': ['php', 'html', 'ctp']}}
 NeoBundleLazy 'StanAngeloff/php.vim', {'autoload': {'filetypes': ['php']}}
@@ -96,5 +97,7 @@ let g:user_zen_settings = {
 \        'dollar_expr' : 0,
 \    },
 \}
+
+let g:jedi#autocompletion_command = '<c-x><c-o><c-p>'
 
 " vim:set ts=4 sts=0 sw=4 fenc=utf8 ff=unix:
