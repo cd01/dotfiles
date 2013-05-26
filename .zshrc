@@ -36,21 +36,6 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-
 # alias
 alias l='ls -la'
 alias x='exit'
-
-# http://qiita.com/items/18591c9f870fcdd0d003
-# 次のようにすると、~エイリアス名 が ディレクトリパス の別名になります。
-# hash -d エイリアス名=ディレクトリパス
-
-# zshでsshのhostname補完をする - http://qiita.com/items/c0d750bda4e38f0d9c14
-autoload -U compinit && compinit
-
-function print_known_hosts (){ 
-    if [ -f $HOME/.ssh/known_hosts ]; then
-        cat $HOME/.ssh/known_hosts | tr ',' ' ' | cut -d' ' -f1 
-    fi
-}
-_cache_hosts=($( print_known_hosts ))
