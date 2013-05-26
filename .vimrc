@@ -1,10 +1,9 @@
 syntax on
 
-
+set expandtab
 set number
+set nf=hex
 set backspace=2
-" set expandtab
-set nf=alpha,hex "インクリメントで使用するフォーマットをアルファベットと16進数に指定（8進数を除去）
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0
@@ -24,40 +23,72 @@ set listchars=tab:»-,trail:_,eol:¶
 " set listchars=tab:^-:
 set helplang=en,ja
 
-" OS毎に.vimの読み込み先を変える
-let $VIMFILE_DIR = (has("win32") || has("win64")) ? 'vimfiles' : '.vim'
+let $VIMFILE_DIR = (has('win32') || has('win64')) ? 'vimfiles' : '.vim'
 " helptags ~/$VIMFILE_DIR/doc
 
-" Unvundle
-runtime bundle/unbundle/unbundle.vim
+"======================= NeoBundle =======================
+set nocompatible               " Be iMproved
 
-" Tweetvim
-nnoremap ,tt :<C-u>TweetVimCommandSay
-nnoremap ,tl :<C-u>TweetVimListStatuses list<CR>
-let g:tweetvim_display_separator = 0
-let g:tweetvim_tweet_per_page = 200
+if has('vim_starting')
+  set runtimepath+=~/$VIMFILE_DIR/bundle/neobundle.vim/
+endif
 
-" w3m.vim
-let g:w3m#disable_vimproc = 1
-let g:w3m#homepage = "http://www.google.co.jp/"
+call neobundle#rc(expand('~/' . $VIMFILE_DIR . '/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Recommended to install
+" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
+NeoBundle 'Shougo/vimproc'
+
+" color scheme
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'vim-scripts/Zenburn'
+NeoBundle 'vim-scripts/twilight'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'nanotech/jellybeans.vim'
+
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-surround'
+
+NeoBundleLazy 'mattn/zencoding-vim', {'autoload': {'filetypes': ['php', 'html', 'ctp']}}
+NeoBundleLazy 'StanAngeloff/php.vim', {'autoload': {'filetypes': ['php']}}
+NeoBundleLazy 'shawncplus/phpcomplete.vim', {'autoload': {'filetypes': ['php']}}
+NeoBundleLazy 'PProvost/vim-ps1', {'autoload': {'filetypes': ['ps1']}}
+NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'teramako/jscomplete-vim', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
+NeoBundleLazy 'tpope/vim-markdown', {'autoload': {'filetypes': ['markdown']}}
+NeoBundleLazy 'mattn/mkdpreview-vim', {'autoload': {'filetypes': ['markdown']}}
+
+filetype plugin indent on     " Required!
+
+" Brief help
+" :NeoBundleList          - list configured bundles
+" :NeoBundleInstall(!)    - install(update) bundles
+" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+
+" Installation check.
+NeoBundleCheck
+"======================= NeoBundle =======================
 
 " powerline
-let g:Powerline_colorscheme = "solarized256"
-let g:Powerline_mode_v      = "VISUAL"
-let g:Powerline_mode_V      = "V:LINE"
-let g:Powerline_mode_cv     = "V:BLOCK"
-let g:Powerline_mode_s      = "SELECT"
-let g:Powerline_mode_S      = "S:LINE"
-let g:Powerline_mode_cs     = "S:BLOCK"
-let g:Powerline_mode_i      = "INSERT"
-let g:Powerline_mode_R      = "REPLACE"
-let g:Powerline_mode_n      = "NORMAL"
+let g:Powerline_colorscheme = 'solarized256'
 let g:Powerline_symbols     = 'fancy'
 set laststatus=2
-set t_Co=256 " Linuxのターミナルのときだけ？
+set t_Co=256 " Linuxのターミナルのときだけ必要？
 
-" markdown
-autocmd BufRead,BufNewFile *.md  set filetype=mkd
+autocmd BufRead,BufNewFile *.md   set filetype=mkd
+autocmd BufRead,BufNewFile *.ctp  set filetype=php
+autocmd FileType php :set dictionary=~/$VIMFILE_DIR/dict/php.dict
+let $MYVIMRC='~/Dropbox/dotfiles/.vimrc'
 
 " zencoding
 let g:user_zen_settings = {
@@ -65,9 +96,5 @@ let g:user_zen_settings = {
 \        'dollar_expr' : 0,
 \    },
 \}
-
-autocmd FileType php :set dictionary=~/$VIMFILE_DIR/dict/php.dict
-
-nnoremap ,v :edit ~/Dropbox/dotfiles/.vimrc<CR>
 
 " vim:set ts=4 sts=0 sw=4 fenc=utf8 ff=unix:
