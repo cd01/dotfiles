@@ -59,15 +59,15 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/zencoding-vim'
 
-NeoBundleLazy 'StanAngeloff/php.vim', {'autoload': {'filetypes': ['php']}}
-NeoBundleLazy 'shawncplus/phpcomplete.vim', {'autoload': {'filetypes': ['php']}}
-NeoBundleLazy 'PProvost/vim-ps1', {'autoload': {'filetypes': ['ps1']}}
-NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
-NeoBundleLazy 'teramako/jscomplete-vim', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'StanAngeloff/php.vim'        , {'autoload': {'filetypes': ['php']}}
+NeoBundleLazy 'shawncplus/phpcomplete.vim'  , {'autoload': {'filetypes': ['php']}}
+NeoBundleLazy 'PProvost/vim-ps1'            , {'autoload': {'filetypes': ['ps1']}}
+NeoBundleLazy 'davidhalter/jedi-vim'        , {'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'teramako/jscomplete-vim'     , {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
-NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
-NeoBundleLazy 'tpope/vim-markdown', {'autoload': {'filetypes': ['markdown']}}
-NeoBundleLazy 'mattn/mkdpreview-vim', {'autoload': {'filetypes': ['markdown']}}
+NeoBundleLazy 'kchmck/vim-coffee-script'    , {'autoload': {'filetypes': ['coffee']}}
+NeoBundleLazy 'tpope/vim-markdown'          , {'autoload': {'filetypes': ['markdown']}}
+NeoBundleLazy 'mattn/mkdpreview-vim'        , {'autoload': {'filetypes': ['markdown']}}
 
 filetype plugin indent on     " Required!
 
