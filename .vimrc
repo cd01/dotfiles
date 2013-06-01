@@ -57,8 +57,8 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'mattn/zencoding-vim'
 
-NeoBundleLazy 'mattn/zencoding-vim', {'autoload': {'filetypes': ['php', 'html', 'ctp']}}
 NeoBundleLazy 'StanAngeloff/php.vim', {'autoload': {'filetypes': ['php']}}
 NeoBundleLazy 'shawncplus/phpcomplete.vim', {'autoload': {'filetypes': ['php']}}
 NeoBundleLazy 'PProvost/vim-ps1', {'autoload': {'filetypes': ['ps1']}}
