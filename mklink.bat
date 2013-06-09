@@ -1,3 +1,4 @@
+mklink /h "%USERPROFILE%/.bashrc"                          "%USERPROFILE%\Dropbox\dotfiles\.bashrc"
 mklink /h "%USERPROFILE%/.vimrc"                           "%USERPROFILE%\Dropbox\dotfiles\.vimrc"
 mklink /h "%USERPROFILE%/.gvimrc"                          "%USERPROFILE%\Dropbox\dotfiles\.gvimrc"
 mklink /h "%USERPROFILE%/.vimshrc"                         "%USERPROFILE%\Dropbox\dotfiles\.vimshrc"
