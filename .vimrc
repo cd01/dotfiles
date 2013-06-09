@@ -58,6 +58,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'scrooloose/nerdcommenter'
 
 NeoBundleLazy 'StanAngeloff/php.vim'        , {'autoload': {'filetypes': ['php']}}
 NeoBundleLazy 'shawncplus/phpcomplete.vim'  , {'autoload': {'filetypes': ['php']}}
@@ -68,6 +69,7 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javas
 NeoBundleLazy 'kchmck/vim-coffee-script'    , {'autoload': {'filetypes': ['coffee']}}
 NeoBundleLazy 'tpope/vim-markdown'          , {'autoload': {'filetypes': ['markdown']}}
 NeoBundleLazy 'mattn/mkdpreview-vim'        , {'autoload': {'filetypes': ['markdown']}}
+NeoBundleLazy 'nginx.vim'                   , {'autoload': {'filetypes': ['conf']}}
 
 filetype plugin indent on     " Required!
 
@@ -98,6 +100,8 @@ let g:user_zen_settings = {
 \    },
 \}
 
-let g:jedi#autocompletion_command = '<c-x><c-o><c-p>'
+let g:jedi#autocompletion_command = '<C-Space>'
+
+set runtimepath+=~/$VIMFILE_DIR/userlocal/
 
 " vim:set ts=4 sts=0 sw=4 fenc=utf8 ff=unix:
