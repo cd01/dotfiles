@@ -1,50 +1,40 @@
-# TODO:外部ファイル化して、javascriptを圧縮するやつとか入れてみたい
-# TODO:if 1は必要か？
+# TODO: 外部ファイル化して、javascriptを圧縮するやつとか入れてみたい
+# TODO: if 1は必要か？
+
 from keyhac import *
 import pyauto
 import os
-homeDir = os.environ.get('HOME', "")
+
+HOME_DIR = os.environ.get('HOME', "")
 
 def configure(keymap):
-
     # --------------------------------------------------------------------
     # config.py編集用のテキストエディタの設定
 
     # プログラムのファイルパスを設定 (単純な使用方法)
     if 1:
-        keymap.editor = homeDir + u"/tools/vim/gvim.exe"
-
-    # 呼び出し可能オブジェクトを設定 (高度な使用方法)
-    if 0:
-        def editor(path):
-            shellExecute( None, None, u"notepad.exe", '"%s"'% path, "" )
-        keymap.editor = editor
+        keymap.editor = HOME_DIR + u"/tools/vim/gvim.exe"
 
     # --------------------------------------------------------------------
-
-    # キーの単純な置き換え
-    # keymap.replaceKey( "LWin", 235 )
-    # keymap.replaceKey( "RWin", 255 )
-
-    # ユーザモディファイアキーの定義
-    # keymap.defineModifier( 235, "User0" )
 
     # どのウインドウにフォーカスがあっても効くキーマップ
     if 1:
         keymap_global = keymap.defineWindowKeymap()
 
         # Ctrl+Space で IME ON/OFF
-        keymap_global[ "C-Space" ] = "244"
+        keymap_global[ "A-Space" ] = "244"
 
         # Vim風
-        keymap_global[ "Alt-J" ] = "Down"
-        keymap_global[ "Alt-H" ] = "Left"
-        keymap_global[ "Alt-L" ] = "Right"
-        keymap_global[ "Alt-K" ] = "Up"
+        keymap_global[ "A-J" ] = "Down"
+        keymap_global[ "A-H" ] = "Left"
+        keymap_global[ "A-L" ] = "Right"
+        keymap_global[ "A-K" ] = "Up"
 
         # ソフトによって使えないときがあるものを大元から変更しておく
         keymap_global[ "C-H" ] = "Back"
         keymap_global[ "C-M" ] = "Enter"
+        keymap_global[ "C-[" ] = "Esc"
+        keymap_global[ "W-q" ] = "A-F4"
 
         # クリップボード履歴
         keymap_global[ "C-S-Z"   ] = keymap.command_ClipboardList     # リスト表示
@@ -53,11 +43,53 @@ def configure(keymap):
         keymap.quote_mark = "> "                                      # 引用貼り付け時の記号
 
         # キーボードマクロ
-        keymap_global[ "Alt-0" ] = keymap.command_RecordToggle
-        keymap_global[ "Alt-1" ] = keymap.command_RecordStart
-        keymap_global[ "Alt-2" ] = keymap.command_RecordStop
-        keymap_global[ "Alt-3" ] = keymap.command_RecordPlay
-        keymap_global[ "Alt-4" ] = keymap.command_RecordClear
+        keymap_global[ "A-0" ] = keymap.command_RecordToggle
+        keymap_global[ "A-1" ] = keymap.command_RecordStart
+        keymap_global[ "A-2" ] = keymap.command_RecordStop
+        keymap_global[ "A-3" ] = keymap.command_RecordPlay
+        keymap_global[ "A-4" ] = keymap.command_RecordClear
+
+    # Emacs 風にカスタマイズする
+    if 1:
+        def classname_is_emacs(window):
+            return window.getClassName() not in (
+                                                     "ConsoleWindowClass", # Cmd, Cygwin
+                                                     "mintty",             # Mintty
+                                                     "Emacs",              # NTEmacs
+                                                     "Vim",                # Vim
+                                                     "PuTTY",              # PuTTY
+                                                     "SWT_Window0",        # Eclipse
+                                                     "MozillaWindowClass"  # Vimperator
+                                                 )
+
+        keymap_emacs = keymap.defineWindowKeymap( check_func=classname_is_emacs )
+
+        # Ctrl-X を マルチストロークの1段目として登録
+        # keymap_notepad[ "C-X" ] = keymap.defineMultiStrokeKeymap("C-X")
+
+        keymap_emacs[ "C-P" ] = "Up"                  # カーソル上
+        keymap_emacs[ "C-N" ] = "Down"                # カーソル下
+        keymap_emacs[ "C-F" ] = "Right"               # カーソル右
+        keymap_emacs[ "C-B" ] = "Left"                # カーソル左
+        keymap_emacs[ "C-A" ] = "Home"                # 行の先頭
+        keymap_emacs[ "C-E" ] = "End"                 # 行の末尾
+        keymap_emacs[ "C-W" ] = "C-Back"              # 切り取り
+        keymap_emacs[ "C-S" ] = "C-F"                 # 検索
+        # keymap_emacs[ "C-Y" ] = "C-V"                 # 貼り付け
+        # keymap_emacs[ "A-F" ] = "C-Right"             # 単語右
+        # keymap_emacs[ "A-B" ] = "C-Left"              # 単語左
+        # keymap_emacs[ "C-V" ] = "PageDown"            # ページ下
+        # keymap_emacs[ "A-V" ] = "PageUp"              # ページ上
+        # keymap_emacs[ "A-Comma" ] = "C-Home"          # バッファ先頭
+        # keymap_emacs[ "A-Period" ] = "C-End"          # バッファ末尾
+        # keymap_emacs[ "C-X" ][ "C-F" ] = "C-O"        # ファイルを開く
+        # keymap_emacs[ "C-X" ][ "C-S" ] = "C-S"        # 保存
+        # keymap_emacs[ "C-X" ][ "C-W" ] = "A-F","A-A"  # 名前を付けて保存
+        # keymap_emacs[ "C-X" ][ "U" ] = "C-Z"          # アンドゥ
+        # keymap_emacs[ "A-X" ] = "C-G"                 # 指定行へ移動
+        # keymap_emacs[ "C-X" ][ "H" ] = "C-A"          # 全て選択
+        # keymap_emacs[ "A-W" ] = "C-C"                 # コピー
+        # keymap_emacs[ "C-X" ][ "C-C" ] = "A-F4"       # 終了
 
     # USER0-E : アクティブ化するか、まだであれば起動する
     def command_ActivateOrExecute( className, filename, param = u"", directory = u"" ):
@@ -72,14 +104,14 @@ def configure(keymap):
             executeFunc = keymap.command_ShellExecute( None, None, filename, param, directory, swMaximize )
             executeFunc()
 
-    keymap_global[ "C-S-P" ] = lambda: command_ActivateOrExecute( "CkwWindowClass"       , homeDir + "/tools/ckw/ckw.exe" )
-    keymap_global[ "C-S-G" ] = lambda: command_ActivateOrExecute( "Vim"                  , homeDir + "/tools/vim/gvim.exe" )
-    keymap_global[ "C-S-Q" ] = lambda: command_ActivateOrExecute( "TSubForm.UnicodeClass", homeDir + "/tools/Mery/Mery.exe" )
+    keymap_global[ "C-S-P" ] = lambda: command_ActivateOrExecute( "CkwWindowClass"       , HOME_DIR + "/tools/ckw/ckw.exe" )
+    keymap_global[ "C-S-G" ] = lambda: command_ActivateOrExecute( "Vim"                  , HOME_DIR + "/tools/vim/gvim.exe" )
+    keymap_global[ "C-S-Q" ] = lambda: command_ActivateOrExecute( "TSubForm.UnicodeClass", HOME_DIR + "/tools/Mery/Mery.exe" )
     keymap_global[ "C-S-M" ] = lambda: command_ActivateOrExecute( "mintty"               , "C:/MinGW/msys/1.0/bin/mintty.exe", u"/bin/bash --login -i" )
     keymap_global[ "C-S-I" ] = lambda: command_ActivateOrExecute( "IEFrame"              , "C:/Program Files/Internet Explorer/iexplore.exe" )
     keymap_global[ "C-S-C" ] = lambda: command_ActivateOrExecute( "Chrome_WidgetWin_1"   , "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" )
     keymap_global[ "C-S-F" ] = lambda: command_ActivateOrExecute( "MozillaWindowClass"   , "C:/Program Files/Waterfox/waterfox.exe" ) # Firefoxだけ、なぜかForegroundにならない・・・orz
-    keymap_global[ "C-S-D" ] = lambda: command_ActivateOrExecute( "CabinetWClass"        , "explorer", "/e," + homeDir + "\\Downloads" )
+    keymap_global[ "C-S-D" ] = lambda: command_ActivateOrExecute( "CabinetWClass"        , "explorer", "/e," + HOME_DIR + "\\Downloads" )
 
     # sendMessageでシステムコマンドを実行
     if 1:
