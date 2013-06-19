@@ -59,6 +59,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'Align'
 
 NeoBundleLazy 'StanAngeloff/php.vim'        , {'autoload': {'filetypes': ['php']}}
 NeoBundleLazy 'shawncplus/phpcomplete.vim'  , {'autoload': {'filetypes': ['php']}}
@@ -81,6 +82,10 @@ filetype plugin indent on     " Required!
 " Installation check.
 NeoBundleCheck
 "======================= NeoBundle =======================
+
+" Align Setting
+let g:Align_xstrlen    = 3
+let g:DrChipTopLvlMenu = ""
 
 " powerline
 let g:Powerline_colorscheme = 'solarized256'
