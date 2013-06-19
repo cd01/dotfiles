@@ -42,7 +42,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
 " NeoBundle 'Shougo/vimproc'
 
-" color scheme
+" Color Scheme
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'vim-scripts/Zenburn'
 NeoBundle 'vim-scripts/twilight'
@@ -87,7 +87,7 @@ NeoBundleCheck
 let g:Align_xstrlen    = 3
 let g:DrChipTopLvlMenu = ""
 
-" powerline
+" Powerline Setting
 let g:Powerline_colorscheme = 'solarized256'
 let g:Powerline_symbols     = 'fancy'
 set laststatus=2
@@ -98,7 +98,7 @@ autocmd BufRead,BufNewFile *.ctp  set filetype=php
 autocmd FileType php :set dictionary=~/$VIMFILE_DIR/dict/php.dict
 let $MYVIMRC='~/Dropbox/dotfiles/.vimrc'
 
-" zencoding
+" Zencoding Setting
 let g:user_zen_settings = {
 \    'php' : {
 \        'dollar_expr' : 0,
