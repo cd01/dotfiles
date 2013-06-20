@@ -29,6 +29,9 @@ let $VIMFILE_DIR = (has('win32') || has('win64')) ? 'vimfiles' : '.vim'
 "======================= NeoBundle =======================
 set nocompatible               " Be iMproved
 
+" プロキシ通さないといけない環境では有効にする
+" let g:neobundle_default_git_protocol='https'
+
 if has('vim_starting')
   set runtimepath+=~/$VIMFILE_DIR/bundle/neobundle.vim/
 endif
