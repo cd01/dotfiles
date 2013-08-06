@@ -80,7 +80,7 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Align'
 
