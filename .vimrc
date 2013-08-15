@@ -72,6 +72,7 @@ NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'junegunn/seoul256.vim'
 
 NeoBundle 'Lokaltog/vim-powerline'
 " NeoBundle 'molok/vim-smartusline'
@@ -130,7 +131,8 @@ let g:user_zen_settings = {
 
 let g:jedi#autocompletion_command = '<C-Space>'
 
-colorscheme jellybeans
+" colorscheme jellybeans
+colorscheme seoul256
 
 set runtimepath+=~/$VIMFILE_DIR/userlocal/
 
