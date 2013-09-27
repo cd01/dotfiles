@@ -1,5 +1,5 @@
-# TODO: 外部ファイル化して、javascriptを圧縮するやつとか入れてみたい
-# TODO: if 1は必要か？
+# TODO: 外部ファイル化して、javascriptをminifyするやつとか入れてみたい
+# TODO: iTunes にフォーカス合わせたら、IME OFFにする
 
 from keyhac import *
 import pyauto
@@ -8,90 +8,85 @@ import os
 HOME_DIR = os.environ.get('HOME', "")
 
 def configure(keymap):
-    # --------------------------------------------------------------------
-    # config.py編集用のテキストエディタの設定
-
-    # プログラムのファイルパスを設定 (単純な使用方法)
-    if 1:
-        keymap.editor = HOME_DIR + u"/tools/vim/gvim.exe"
-
-    # --------------------------------------------------------------------
+    keymap.editor = HOME_DIR + u"/tools/vim/gvim.exe"
 
     # どのウインドウにフォーカスがあっても効くキーマップ
-    if 1:
-        keymap_global = keymap.defineWindowKeymap()
+    keymap_global = keymap.defineWindowKeymap()
 
-        # Ctrl+Space で IME ON/OFF
-        keymap_global[ "A-Space" ] = "244"
+    # Ctrl+Space で IME ON/OFF
+    keymap_global[ "C-Space" ] = "244"
 
-        # Vim風
-        keymap_global[ "A-J" ] = "Down"
-        keymap_global[ "A-H" ] = "Left"
-        keymap_global[ "A-L" ] = "Right"
-        keymap_global[ "A-K" ] = "Up"
+    # Vim風
+    keymap_global[ "A-J" ] = "Down"
+    keymap_global[ "A-H" ] = "Left"
+    keymap_global[ "A-L" ] = "Right"
+    keymap_global[ "A-K" ] = "Up"
 
-        # ソフトによって使えないときがあるものを大元から変更しておく
-        keymap_global[ "C-H" ] = "Back"
-        keymap_global[ "C-M" ] = "Enter"
-        keymap_global[ "C-[" ] = "Esc"
-        keymap_global[ "W-q" ] = "A-F4"
+    # bashのemacsモードっぽく
+    keymap_global[ "C-A" ] = "Home"
+    keymap_global[ "C-E" ] = "End"
 
-        # クリップボード履歴
-        keymap_global[ "C-S-Z"   ] = keymap.command_ClipboardList     # リスト表示
-        keymap_global[ "C-S-X"   ] = keymap.command_ClipboardRotate   # 直近の履歴を末尾に回す
-        keymap_global[ "C-S-A-X" ] = keymap.command_ClipboardRemove   # 直近の履歴を削除
-        keymap.quote_mark = "> "                                      # 引用貼り付け時の記号
+    # ソフトによって使えないときがあるものを大元から変更しておく
+    keymap_global[ "C-H" ] = "Back"
+    keymap_global[ "C-M" ] = "Enter"
+    keymap_global[ "C-[" ] = "Esc"
+    keymap_global[ "W-q" ] = "A-F4"
 
-        # キーボードマクロ
-        keymap_global[ "A-0" ] = keymap.command_RecordToggle
-        keymap_global[ "A-1" ] = keymap.command_RecordStart
-        keymap_global[ "A-2" ] = keymap.command_RecordStop
-        keymap_global[ "A-3" ] = keymap.command_RecordPlay
-        keymap_global[ "A-4" ] = keymap.command_RecordClear
+    # クリップボード履歴
+    keymap_global[ "C-S-Z"   ] = keymap.command_ClipboardList     # リスト表示
+    keymap_global[ "C-S-X"   ] = keymap.command_ClipboardRotate   # 直近の履歴を末尾に回す
+    keymap_global[ "C-S-A-X" ] = keymap.command_ClipboardRemove   # 直近の履歴を削除
+    keymap.quote_mark = "> "                                      # 引用貼り付け時の記号
+
+    # キーボードマクロ
+    keymap_global[ "A-0" ] = keymap.command_RecordToggle
+    keymap_global[ "A-1" ] = keymap.command_RecordStart
+    keymap_global[ "A-2" ] = keymap.command_RecordStop
+    keymap_global[ "A-3" ] = keymap.command_RecordPlay
+    keymap_global[ "A-4" ] = keymap.command_RecordClear
 
     # Emacs 風にカスタマイズする
-    if 1:
-        def classname_is_emacs(window):
-            return window.getClassName() not in (
-                                                     "ConsoleWindowClass", # Cmd, Cygwin
-                                                     "mintty",             # Mintty
-                                                     "Emacs",              # NTEmacs
-                                                     "Vim",                # Vim
-                                                     "PuTTY",              # PuTTY
-                                                     "SWT_Window0",        # Eclipse
-                                                     "MozillaWindowClass"  # Vimperator
-                                                 )
+    # if 1:
+    #     def classname_is_emacs(window):
+    #         return window.getClassName() not in (
+    #                                                  "ConsoleWindowClass", # Cmd, Cygwin
+    #                                                  "mintty",             # Mintty
+    #                                                  "Emacs",              # NTEmacs
+    #                                                  "Vim",                # Vim
+    #                                                  "PuTTY",              # PuTTY
+    #                                                  "SWT_Window0",        # Eclipse
+    #                                                  "MozillaWindowClass"  # Vimperator
+    #                                              )
 
-        keymap_emacs = keymap.defineWindowKeymap( check_func=classname_is_emacs )
+    #     keymap_emacs = keymap.defineWindowKeymap( check_func=classname_is_emacs )
 
-        # Ctrl-X を マルチストロークの1段目として登録
-        # keymap_notepad[ "C-X" ] = keymap.defineMultiStrokeKeymap("C-X")
+    #     # Ctrl-X を マルチストロークの1段目として登録
+    #     keymap_emacs[ "C-X" ] = keymap.defineMultiStrokeKeymap("C-X")
 
-        keymap_emacs[ "C-P" ] = "Up"                  # カーソル上
-        keymap_emacs[ "C-N" ] = "Down"                # カーソル下
-        keymap_emacs[ "C-F" ] = "Right"               # カーソル右
-        keymap_emacs[ "C-B" ] = "Left"                # カーソル左
-        keymap_emacs[ "C-A" ] = "Home"                # 行の先頭
-        keymap_emacs[ "C-E" ] = "End"                 # 行の末尾
-        keymap_emacs[ "C-W" ] = "C-Back"              # 切り取り
-        keymap_emacs[ "C-S" ] = "C-F"                 # 検索
-        # keymap_emacs[ "C-Y" ] = "C-V"                 # 貼り付け
-        # keymap_emacs[ "A-F" ] = "C-Right"             # 単語右
-        # keymap_emacs[ "A-B" ] = "C-Left"              # 単語左
-        # keymap_emacs[ "C-V" ] = "PageDown"            # ページ下
-        # keymap_emacs[ "A-V" ] = "PageUp"              # ページ上
-        # keymap_emacs[ "A-Comma" ] = "C-Home"          # バッファ先頭
-        # keymap_emacs[ "A-Period" ] = "C-End"          # バッファ末尾
-        # keymap_emacs[ "C-X" ][ "C-F" ] = "C-O"        # ファイルを開く
-        # keymap_emacs[ "C-X" ][ "C-S" ] = "C-S"        # 保存
-        # keymap_emacs[ "C-X" ][ "C-W" ] = "A-F","A-A"  # 名前を付けて保存
-        # keymap_emacs[ "C-X" ][ "U" ] = "C-Z"          # アンドゥ
-        # keymap_emacs[ "A-X" ] = "C-G"                 # 指定行へ移動
-        # keymap_emacs[ "C-X" ][ "H" ] = "C-A"          # 全て選択
-        # keymap_emacs[ "A-W" ] = "C-C"                 # コピー
-        # keymap_emacs[ "C-X" ][ "C-C" ] = "A-F4"       # 終了
+    #     keymap_emacs[ "C-P" ] = "Up"                  # カーソル上
+    #     keymap_emacs[ "C-N" ] = "Down"                # カーソル下
+    #     keymap_emacs[ "C-F" ] = "Right"               # カーソル右
+    #     keymap_emacs[ "C-B" ] = "Left"                # カーソル左
+    #     keymap_emacs[ "C-A" ] = "Home"                # 行の先頭
+    #     keymap_emacs[ "C-E" ] = "End"                 # 行の末尾
+    #     keymap_emacs[ "C-W" ] = "C-Back"              # 切り取り
+    #     keymap_emacs[ "C-S" ] = "C-F"                 # 検索
+    #     keymap_emacs[ "C-Y" ] = "C-V"                 # 貼り付け
+    #     keymap_emacs[ "A-F" ] = "C-Right"             # 単語右
+    #     keymap_emacs[ "A-B" ] = "C-Left"              # 単語左
+    #     keymap_emacs[ "C-V" ] = "PageDown"            # ページ下
+    #     keymap_emacs[ "A-V" ] = "PageUp"              # ページ上
+    #     keymap_emacs[ "A-Comma" ] = "C-Home"          # バッファ先頭
+    #     keymap_emacs[ "A-Period" ] = "C-End"          # バッファ末尾
+    #     keymap_emacs[ "C-X" ][ "C-F" ] = "C-O"        # ファイルを開く
+    #     keymap_emacs[ "C-X" ][ "C-S" ] = "C-S"        # 保存
+    #     keymap_emacs[ "C-X" ][ "C-W" ] = "A-F","A-A"  # 名前を付けて保存
+    #     keymap_emacs[ "C-X" ][ "U" ] = "C-Z"          # アンドゥ
+    #     keymap_emacs[ "A-X" ] = "C-G"                 # 指定行へ移動
+    #     keymap_emacs[ "C-X" ][ "H" ] = "C-A"          # 全て選択
+    #     keymap_emacs[ "A-W" ] = "C-C"                 # コピー
+    #     keymap_emacs[ "C-X" ][ "C-C" ] = "A-F4"       # 終了
 
-    # USER0-E : アクティブ化するか、まだであれば起動する
     def command_ActivateOrExecute( className, filename, param = u"", directory = u"" ):
         wnd = Window.find( className, None )
         if wnd:
