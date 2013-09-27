@@ -131,6 +131,10 @@ let g:user_zen_settings = {
 
 let g:jedi#autocompletion_command = '<C-Space>'
 
+if $GOROOT != ''
+  set rtp+=$GOROOT/misc/vim
+endif
+
 " colorscheme jellybeans
 colorscheme seoul256
 

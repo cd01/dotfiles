@@ -47,3 +47,8 @@ plugins=(git bundler gem github knife node rake ruby rvm vagrant)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+# export GOROOT=/usr/bin
+export GOPATH=$HOME/_go
+export PATH=$PATH:$GOPATH/bin
+
