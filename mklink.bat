@@ -4,7 +4,7 @@ mklink /h "%USERPROFILE%\.gvimrc"                          "%USERPROFILE%\Dropbo
 mklink /h "%USERPROFILE%\.vimshrc"                         "%USERPROFILE%\Dropbox\dotfiles\.vimshrc"
 mklink /h "%USERPROFILE%\.vimperatorrc"                    "%USERPROFILE%\Dropbox\dotfiles\.vimperatorrc"
 mklink /d "%USERPROFILE%\vimfiles"                         "%USERPROFILE%\Dropbox\dotfiles\.vim"
-mklink /d "%USERPROFILE%\vimperator"                       "%USERPROFILE%\Dropbox\dotfiles\.vimperator"
+mklink /d "%USERPROFILE%\.vimperator"                       "%USERPROFILE%\Dropbox\dotfiles\.vimperator"
 mklink /h "%USERPROFILE%\.minttyrc"                        "%USERPROFILE%\Dropbox\dotfiles\.minttyrc"
 mklink /h "%USERPROFILE%\AppData\Roaming\keyhac\config.py" "%USERPROFILE%\Dropbox\dotfiles\keyhac_config.py"
 mklink /h "%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" "%USERPROFILE%\Dropbox\dotfiles\Microsoft.PowerShell_profile.ps1"
