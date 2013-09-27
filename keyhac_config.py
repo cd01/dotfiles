@@ -1,5 +1,6 @@
 # TODO: 外部ファイル化して、javascriptをminifyするやつとか入れてみたい
 # TODO: iTunes にフォーカス合わせたら、IME OFFにする
+# TODO: Python3.x に合わせた書き方に修正する
 
 from keyhac import *
 import pyauto
