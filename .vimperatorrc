@@ -1,16 +1,14 @@
-" 3.3 (created: 2011/11/13 17:32:12)
-
+set rtp=~/.vimperator
 set history=5000
-colorscheme sweets_dita
 set gui=nobookmarks,nomenu,nohatehaBookmarks,nonavigation
+set hintchars=ifjklasdweuocvbnm
+set! browser.sessionstore.max_tabs_undo=100
+colorscheme sweets_dita
 
 js<<EOM
-  // vimperator/info/default のパスを変える
-  liberator.modules.storage.infoPath.initWithPath(File.expandPath("~/vimperatorInfo"));
+  // .vimperator/info/default のパスを変える
+  liberator.modules.storage.infoPath.initWithPath(File.expandPath("~/.vimperatorInfo"));
 EOM
-
-" undo limit
-set! browser.sessionstore.max_tabs_undo=100
 
 " 単語選択時の右側のスペース選択を行わない
 set! layout.word_select.eat_space_to_next_word=false
@@ -19,66 +17,15 @@ set! layout.word_select.eat_space_to_next_word=false
 set! ui.key.generalAccessKey=0
 set! ui.key.contentAccessKey=0
 
-" (t) tumblr
-" nnoremap <Leader>tr :<C-u>tombloo ReBlog<Space>-<Space>Tumblr
-" nnoremap <Leader>tt :<C-u>tombloo<Space>
-
-" 各コマンド呼び出し
-" nnoremap <Leader>h :<C-u>hsearch<Space>
-" nnoremap <Leader>H :<C-u>hcopy<Space>
-" nnoremap <Leader>s :<C-u>viewSBMComments -type htdl -format=id,comment<CR>
-" nnoremap <Leader>g :<C-u>gmail<Space>
-" nnoremap <Leader>G :<C-u>gtrans<Space>
-" nnoremap <Leader>a :<C-u>applaunch<Space>
-" nnoremap <Leader>p :<C-u>pino<Space>
-" nnoremap <Leader>R :<C-u>js<Space>Readability.enableREADABILITY({target: {id: 'readability-statusbar-icon'}})<CR>
-
-" QuickMarks {{{
-
-" silent qmark a http://a.hatena.ne.jp/anekosp/
-" silent qmark B http://bit.ly/
-" silent qmark b https://mail.google.com/mail/?shva=1#buzz
-" silent qmark c https://catch.com/m/
-" silent qmark d http://d.hatena.ne.jp/nokturnalmortum/
-" silent qmark f http://fastladder.com/reader/
-" silent qmark g https://mail.google.com/mail/#mbox
-" silent qmark h http://www.google.co.jp/ig
-" silent qmark l http://reader.livedoor.com/reader/
-" silent qmark m http://mixi.jp/home.pl
-" silent qmark o https://www.ohloh.net/accounts/anekos
-" silent qmark r http://www.rememberthemilk.com/
-" silent qmark R http://www.rememberthemilk.com/home/anekosp/#section.tasks
-" silent qmark s http://springpadit.com/springpad/#home
-" silent qmark T http://anekos.tumblr.com/
-" silent qmark t http://www.tumblr.com/dashboard
-" silent qmark w http://twitter.com/home
-
-"=====================================================================
 " Shift + ← → で現在のタブの位置変更
-"=====================================================================
 map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
-"=====================================================================
 " Evernote Clearly
-"=====================================================================
 nnoremap ,e :clearly<CR>
 nnoremap ,E :clearly save<CR>
 
-"=====================================================================
-" ヒントをアルファベットに
-"=====================================================================
-set hintchars=ifjklasdweuocvbnm
-
-"=====================================================================
-" 画像の多いタブを閉じた時にすぐにメモリ使用量を減らす
-"=====================================================================
-" http://space.geocities.yahoo.co.jp/gl/alice0775/view/20110416/1302920985
-set! image.mem.min_discard_timeout_ms=6000
-
-"=====================================================================
 " ime_controller.js
-"=====================================================================
 " auto"     : No change
 " active"   : Initially IME on
 " inactive" : Initially IME off
@@ -86,16 +33,6 @@ set! image.mem.min_discard_timeout_ms=6000
 let g:ex_ime_mode = "inactive"
 let g:textarea_ime_mode = "inactive"
 
-"=====================================================================
-" h/lでタブ移動
-"=====================================================================
-nnoremap h gT
-nnoremap l gt
-
-"=====================================================================
-"textareaをテキストエディタで編集する
-"=====================================================================
-set editor='vim'
 
 "=====================================================================
 " キーマップ Key Mapping
@@ -110,11 +47,16 @@ set editor='vim'
 " cnoremap          x        x        x        x         o
 "=====================================================================
 
+nnoremap h gT
+nnoremap l gt
+set editor='vim'
+
+
 "=====================================================================
 " ヴィジュアルモードのカーソル左右移動もh,l
 "=====================================================================
-vnoremap h <Left>
-vnoremap l <Right>
+"vnoremap h <Left>
+"vnoremap l <Right>
 
 "=====================================================================
 " JavaScriptでのウィンドウ移動・リサイズ拒否
@@ -122,47 +64,34 @@ vnoremap l <Right>
 set! dom.disable_window_move_resize=true
 
 "=====================================================================
-" 新規タブをバックグラウンドで
-"=====================================================================
-set! browser.tabs.loadDivertedInBackground=true
-
-"=====================================================================
 " vimpからはてブアドオン操作
 "=====================================================================
 " https://github.com/hatena/hatena-bookmark-xul/wiki/Vimperator-ではてなブックマーク拡張を使う
 " http://d.hatena.ne.jp/ruedap/20110407/vimperator_hatena_bookmark_firefox_operation
 js <<EOM
-liberator.globalVariables.hBookmark_shortcuts = { 
-     hintsAdd : 'B',  
-     hintsComment : '',  
-     add : [''],  
-     comment : ['C'],
-};
+    liberator.globalVariables.hBookmark_shortcuts = { 
+         hintsAdd     : 'B',
+         hintsComment : '',
+         add          : [''],
+         comment      : ['C'],
+    };
+
+    if (typeof hBookmark != 'undefined') {
+        liberator.loadScript(
+            'chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js',
+            {__proto__: this}
+        );
+    }
 EOM
-javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
-
-
-" appendAnchor
-let g:auto_append_anchor = 0
-let g:auto_append_anchor_once = 1
-
-" hints-for-embedded.js
-let g:hints_for_embedded_mode = "e"
-
-" sbm_comments_viewer
-let g:sbm_comments_viewer_filter_nocomments = 1
-
-" auto_source.js
-" let g:auto_source_first_time = 1
 
 " gmail-commando.js
-let g:gmail_commando_map_translate = "<Leader>t"
+let g:gmail_commando_map_translate        = "<Leader>t"
 let g:gmail_commando_map_translate_thread = "<Leader>T"
-let g:gmail_commando_map_fold = "<Leader>f"
-let g:gmail_commando_map_unfold = "<Leader>F"
-let g:gmail_commando_map_important = "<Leader>i"
-let g:gmail_commando_map_unimportant = "<Leader>I"
-let g:gmail_commando_label_shortcut = 1
+let g:gmail_commando_map_fold             = "<Leader>f"
+let g:gmail_commando_map_unfold           = "<Leader>F"
+let g:gmail_commando_map_important        = "<Leader>i"
+let g:gmail_commando_map_unimportant      = "<Leader>I"
+let g:gmail_commando_label_shortcut       = 1
 
 " statstat
 let g:statstat_expression = "let (output = function(){ let [,cmd,,arg1] = commands.parseCommand(commandline.command); if (cmd === 'tw') { return (arg1.length <= 140) ? '文字数:' + arg1.length : '字数オーバー:' + arg1.length; } else { return new Date().toLocaleString(); } }) output();"
@@ -173,10 +102,6 @@ let g:statstat_interval   = "300"
 nnoremap -urls=www\\.slideshare\\.net l :slideshare next<CR>
 nnoremap -urls=www\\.slideshare\\.net h :slideshare prev<CR>
 
-"=====================================================================
-" Twittperator SSLで接続
-"=====================================================================
-let g:twittperator_use_ssl_connection_for_api_ep = 1
 
 "=====================================================================
 " Vimperatorボタン
@@ -210,7 +135,7 @@ lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 
 
-map ,r :source ~/.vimperatorrc<CR>:loadplugins<CR>:echo 'Reload .vimperatorrc and loadplugins!!'<CR>
+map ,r :so ~/.vimperatorrc<CR>:loadplugins<CR>:echo 'Reload .vimperatorrc and loadplugins!!'<CR>
 
 " :dia sqlitemanagerで起動できるらしい。要確認
 js <<EOM
@@ -221,7 +146,7 @@ EOM
 noremap ,st :stylish turnall<CR>
 noremap ,t js:var echofonListButton=document.getElementById("listsButton");echofonListButton.click();
 
-noremap T :tabopen! 
+noremap T :tabopen!
 
 " bash emacsモード風
 cnoremap <C-y> <C-z>
@@ -232,24 +157,17 @@ cnoremap <C-p> <Up>
 cnoremap <C-w> <C-BS>
 
 let g:twittperator_use_ssl_connection_for_api_ep = 1
-let g:twittperator_use_chirp = 1
-let g:twittperator_plugin_twsidebar = 1
-let g:twittperator_screen_name = "CD01_"
-let g:twittperator_history_limit = 5000
-let g:twittperator_lang = "ja"
-let g:twittperator_count = 50
-let g:twittperator_track_words = "vimp,vimperator,Twittperator,ついっぺ,ツイッペ,twsidebar"
-let g:twittperator_plugin_pong = 1
-let g:twittperator_plugin_add_url_completer = 1
-let g:twittperator_plugin_rt = 1
-let g:twittperator_plugin_twsidebar = 1
-
-nnoremap ,wS :tws<Space>
-nnoremap ,ws1 :tws tab 0<CR>
-nnoremap ,ws2 :tws tab 1<CR>
-nnoremap ,ws3 :tws tab 2<CR>
-nnoremap ,ws4 :tws tab 3<CR>
-nnoremap ,ws5 :tws tab 4<CR>
+let g:twittperator_use_chirp                     = 0
+let g:twittperator_plugin_twsidebar              = 1
+let g:twittperator_screen_name                   = "CD01_"
+let g:twittperator_history_limit                 = 5000
+let g:twittperator_lang                          = "ja"
+let g:twittperator_count                         = 50
+let g:twittperator_track_words                   = "vimp,vimperator,Twittperator,ついっぺ,ツイッペ,twsidebar"
+let g:twittperator_plugin_pong                   = 1
+let g:twittperator_plugin_add_url_completer      = 1
+let g:twittperator_plugin_rt                     = 1
+let g:twittperator_plugin_twsidebar              = 1
 
 js<<EOM
 (function () {
@@ -275,37 +193,26 @@ js<<EOM
     myNames: /cd01_/i,
 
     // ログファイル てけとーなフォーマットで保存されます
-    logFile: io.File('~/.chirpstream'),
-    myLogFile: io.File('~/.mychirpstream'),
+    logFile   : io.File('~/.chirpstream'),
+    myLogFile : io.File('~/.mychirpstream'),
 
     // 各イベント時に音がなる
     sound: {
-      meow: makeAudio('file:///home/anekos/sound/my/meow.wav'),
-      fanfare: makeAudio('file://C:/sound-data/fanfare.wav', 0.5),
-      retweet: makeAudio('file:///home/anekos/sound/my/meow.wav', 0.8),
-      favorite: makeAudio('file:///home/anekos/sound/my/meow.wav', 0.6),
-      reply: makeAudio('file:///home/anekos/sound/my/meow.wav', 1.0),
-      debug: makeAudio('file:///home/anekos/sound/my/meow.wav', 1.0),
-      filter: makeAudio('file:///home/anekos/sound/my/meow.wav', 1.0),
+      meow     : makeAudio('file:///home/anekos/sound/my/meow.wav'),
+      fanfare  : makeAudio('file://C:/sound-data/fanfare.wav', 0.5),
+      retweet  : makeAudio('file:///home/anekos/sound/my/meow.wav', 0.8),
+      favorite : makeAudio('file:///home/anekos/sound/my/meow.wav', 0.6),
+      reply    : makeAudio('file:///home/anekos/sound/my/meow.wav', 1.0),
+      debug    : makeAudio('file:///home/anekos/sound/my/meow.wav', 1.0),
+      filter   : makeAudio('file:///home/anekos/sound/my/meow.wav', 1.0),
     },
 
-    // 文字のサイズ
-    fontSize: 15,
-
-    // リストの最大保持数
-    listMax: 100,
-
-    // 日本語だけ for filter stream
-    jpOnly: false,
-
-    // リストの最大保持数
-    listMax: 200,
-
-    // リストの表示順（昇順／降順）
-    listAscendingOrder: true,
-
-    // ツイートされる度に最新ツイート位置までスクロールする
-    listAutoScroll: true,
+    fontSize           : 15,
+    listMax            : 100,
+    jpOnly             : false,
+    listMax            : 200,
+    listAscendingOrder : true,
+    listAutoScroll     : true,
 
     // サイドバーを閉じても機能を停止しない
     dontStop: true,
@@ -324,17 +231,51 @@ let g:twittperator_plugin_twsidebar_expand_url = 1
 
 " =================================================
 
-" plugin管理 vimpr
-source ~/Dropbox/dotfiles/.vimperator/bundle/_smooziee/_smooziee.js
+" vimppm - Vimperator plugin manager
+so ~/.vimperator/plugin/_libly.js
+so ~/Dropbox/dev/vimppm/plugin/vimppm.js
+" so ~/.vimperator/vimppm/plugin/vimppm.js
+js<<EOM
+(function () {
+    if (liberator.has('Windows')) {
+        " liberator.execute();
+        "~/" + (liberator.has("Windows") ? "" : ".")
+    } else {
+        "liberator.execute('so ~/.vimperator/vimppm/_smooziee.js/plugin/_smooziee.js');
+    }
+})();
+EOM
 
-" bundle.js
-let g:bundlejs_vimperator_dir = "~/Dropbox/dotfiles/.vimperator"
-source ~/Dropbox/dotfiles/.vimperator/plugin/_libly.js
-source ~/Dropbox/dev/vimperator-plugin.bundlejs/bundle.js
-Bundle 'cd01/vimperator-plugin.evernote.clearly'
+" Github Repository
+vimppm 'cd01/evernote-clearly-vimp'
+vimppm 'cd01/suddendeath-vimp'
 
-source ~/Dropbox/dotfiles/.vimperator/bundle/twsidebar.smoothScroll/twsidebar.smoothScroll.js
-lazy source ~/Dropbox/dev/vimperator-plugin.twsidebar.moveCommand/twsidebarMoveCommand.js
+" Vimpr
+vimppm '_smooziee.js'
+vimppm 'alert.js'
+vimppm 'copy.js'
+vimppm 'appendAnchor.js'
+vimppm 'caret-hint.js'
+vimppm 'commandBookmarklet.js'
+vimppm 'feedSomeKeys_3.js'
+vimppm 'gmail-commando.js'
+vimppm 'google-tasks.js'
+vimppm 'goo.gl.js'
+vimppm 'hints-for-embedded.js'
+vimppm 'history-search-backward.js'
+vimppm 'httpstatus.js'
+vimppm 'imageextender.js'
+vimppm 'ime_controller.js'
+vimppm 'jweather.js'
+vimppm 'PDF.js.js'
+vimppm 'pypi.js'
+vimppm 'QB.js'
+vimppm 'sbmcommentsviewer.js'
+vimppm 'slideshare.js'
+vimppm 'statstat.js'
+vimppm 'statusline-toolbar.js'
+vimppm 'stylish.js'
+vimppm 'tabsort.js'
 
 " =================================================
 
@@ -353,7 +294,6 @@ commands.addUserCommand(
 );
 EOM
 
-so ~/Dropbox/dev/vimperator-plugin.suddendeath/suddendeath.js
 command -nargs=1 sleep js liberator.sleep(<args>);
 set statuslinetoolbars=ankpixiv-toolbar-button,webclipper3-button,feed-button,sync-button,kindle-it-button
 
