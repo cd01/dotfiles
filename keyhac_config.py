@@ -46,6 +46,15 @@ def configure(keymap):
     keymap_global[ "A-3" ] = keymap.command_RecordPlay
     keymap_global[ "A-4" ] = keymap.command_RecordClear
 
+    def classname_is_ie(window):
+        return window.getProcessName() == "iexplore.exe"
+
+    keymap_ie = keymap.defineWindowKeymap( check_func=classname_is_ie )
+    keymap_ie[ "h" ] = "C-S-Tab"
+    keymap_ie[ "j" ] = "Down"
+    keymap_ie[ "k" ] = "Up"
+    keymap_ie[ "l" ] = "C-Tab"
+
     # Emacs 風にカスタマイズする
     # if 1:
     #     def classname_is_emacs(window):
