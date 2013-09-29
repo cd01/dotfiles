@@ -1,71 +1,46 @@
 set rtp=~/.vimperator
 set history=5000
-set gui=nobookmarks,nomenu,nohatehaBookmarks,nonavigation
+set gui=
 set hintchars=ifjklasdweuocvbnm
 set! browser.sessionstore.max_tabs_undo=100
 colorscheme sweets_dita
 
+map <S-Right> :tabmove! +1<CR>
+map <S-Left>  :tabmove! -1<CR>
+nnoremap ,e :clearly<CR>
+nnoremap ,E :clearly save<CR>
+nnoremap h gT
+nnoremap l gt
+nnoremap -urls=www\\.slideshare\\.net l :slideshare next<CR>
+nnoremap -urls=www\\.slideshare\\.net h :slideshare prev<CR>
+noremap T :tabopen!
+cnoremap <C-y> <C-z>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <C-w> <C-BS>
+noremap ,st :stylish turnall<CR>
+noremap ,t js:var echofonListButton=document.getElementById("listsButton");echofonListButton.click();
+
 js<<EOM
-  // .vimperator/info/default のパスを変える
+  // ~/.vimperator/info/default のパスを変える
   liberator.modules.storage.infoPath.initWithPath(File.expandPath("~/.vimperatorInfo"));
 EOM
-
-" 単語選択時の右側のスペース選択を行わない
-set! layout.word_select.eat_space_to_next_word=false
 
 " ページのアクセスキーを無効化
 set! ui.key.generalAccessKey=0
 set! ui.key.contentAccessKey=0
 
-" Shift + ← → で現在のタブの位置変更
-map <S-Right> :tabmove! +1<CR>
-map <S-Left>  :tabmove! -1<CR>
-
-" Evernote Clearly
-nnoremap ,e :clearly<CR>
-nnoremap ,E :clearly save<CR>
 
 " ime_controller.js
-" auto"     : No change
-" active"   : Initially IME on
-" inactive" : Initially IME off
-" disabled" : Disable IME
 let g:ex_ime_mode = "inactive"
 let g:textarea_ime_mode = "inactive"
 
 
-"=====================================================================
-" キーマップ Key Mapping
-"=====================================================================
-" mapname         normal   visual    ???     insert commandline
-" noremap           o        o        o        x         x
-" noremap!          x        x        x        o         o
-" nnoremap          o        x        x        x         x
-" vnoremap          x        o        x        x         x
-" onoremap          x        x        o        x         x
-" inoremap          x        x        x        o         x
-" cnoremap          x        x        x        x         o
-"=====================================================================
-
-nnoremap h gT
-nnoremap l gt
 set editor='vim'
 
-
-"=====================================================================
-" ヴィジュアルモードのカーソル左右移動もh,l
-"=====================================================================
-"vnoremap h <Left>
-"vnoremap l <Right>
-
-"=====================================================================
-" JavaScriptでのウィンドウ移動・リサイズ拒否
-"=====================================================================
-set! dom.disable_window_move_resize=true
-
-"=====================================================================
 " vimpからはてブアドオン操作
-"=====================================================================
 " https://github.com/hatena/hatena-bookmark-xul/wiki/Vimperator-ではてなブックマーク拡張を使う
 " http://d.hatena.ne.jp/ruedap/20110407/vimperator_hatena_bookmark_firefox_operation
 js <<EOM
@@ -84,48 +59,20 @@ js <<EOM
     }
 EOM
 
-" gmail-commando.js
-let g:gmail_commando_map_translate        = "<Leader>t"
-let g:gmail_commando_map_translate_thread = "<Leader>T"
-let g:gmail_commando_map_fold             = "<Leader>f"
-let g:gmail_commando_map_unfold           = "<Leader>F"
-let g:gmail_commando_map_important        = "<Leader>i"
-let g:gmail_commando_map_unimportant      = "<Leader>I"
-let g:gmail_commando_label_shortcut       = 1
-
 " statstat
 let g:statstat_expression = "let (output = function(){ let [,cmd,,arg1] = commands.parseCommand(commandline.command); if (cmd === 'tw') { return (arg1.length <= 140) ? '文字数:' + arg1.length : '字数オーバー:' + arg1.length; } else { return new Date().toLocaleString(); } }) output();"
 let g:statstat_autorun    = "true"
 let g:statstat_interval   = "300"
 
-" slideshare.js
-nnoremap -urls=www\\.slideshare\\.net l :slideshare next<CR>
-nnoremap -urls=www\\.slideshare\\.net h :slideshare prev<CR>
 
-
-"=====================================================================
 " Vimperatorボタン
-"=====================================================================
 js <<EOM
     var button = document.getElementById("appmenu-button");
     if (button) button.style.background = "#000000";
 EOM
 
-"=====================================================================
-"選択した文字列をCtrl+Gで検索  http://memo.officebrook.net/20090803.html#p01
-"=====================================================================
-vmap <silent> <C-g> y<Esc><Esc>P
-
-"=====================================================================
 " feedSomeKeys_3.js
-"=====================================================================
 command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
-
-" Google Reader
-lazy fmaps -u='www\.google\.(com|co\.jp)/reader' -events=vkeypress <Space> j k n p m o s v A r S N P X O gh ga gs gt gu u / ? J K
-
-" Google Reader Full Feed (Greasemonkey)
-lazy fmaps -u='www\.google\.(co\.jp|com)/reader' -events=vkeyup z
 
 " Gmail
 lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc
@@ -142,22 +89,9 @@ js <<EOM
     config.dialogs.push([ 'sqlitemanager', 'SQLite Manager', function() openUILinkIn('chrome://sqlitemanager/content/sqlitemanager.xul', 'tab') ]);
 EOM
 
-" stylish.js
-noremap ,st :stylish turnall<CR>
-noremap ,t js:var echofonListButton=document.getElementById("listsButton");echofonListButton.click();
-
-noremap T :tabopen!
-
-" bash emacsモード風
-cnoremap <C-y> <C-z>
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-cnoremap <C-n> <Down>
-cnoremap <C-p> <Up>
-cnoremap <C-w> <C-BS>
 
 let g:twittperator_use_ssl_connection_for_api_ep = 1
-let g:twittperator_use_chirp                     = 0
+let g:twittperator_use_chirp                     = 1
 let g:twittperator_plugin_twsidebar              = 1
 let g:twittperator_screen_name                   = "CD01_"
 let g:twittperator_history_limit                 = 5000
@@ -229,72 +163,45 @@ EOM
 
 let g:twittperator_plugin_twsidebar_expand_url = 1
 
-" =================================================
 
 " vimppm - Vimperator plugin manager
-so ~/.vimperator/plugin/_libly.js
 so ~/Dropbox/dev/vimppm/plugin/vimppm.js
-" so ~/.vimperator/vimppm/plugin/vimppm.js
-js<<EOM
-(function () {
-    if (liberator.has('Windows')) {
-        " liberator.execute();
-        "~/" + (liberator.has("Windows") ? "" : ".")
-    } else {
-        "liberator.execute('so ~/.vimperator/vimppm/_smooziee.js/plugin/_smooziee.js');
-    }
-})();
-EOM
 
 " Github Repository
-vimppm 'cd01/evernote-clearly-vimp'
+vimppm 'cd01/evernote-clearly-vimp' '{"attr": "value", "hoge": "hogehoge"}'
 vimppm 'cd01/suddendeath-vimp'
 
 " Vimpr
 vimppm '_smooziee.js'
-vimppm 'alert.js'
 vimppm 'copy.js'
-vimppm 'appendAnchor.js'
 vimppm 'caret-hint.js'
 vimppm 'commandBookmarklet.js'
 vimppm 'feedSomeKeys_3.js'
 vimppm 'gmail-commando.js'
-vimppm 'google-tasks.js'
 vimppm 'goo.gl.js'
-vimppm 'hints-for-embedded.js'
-vimppm 'history-search-backward.js'
-vimppm 'httpstatus.js'
 vimppm 'imageextender.js'
 vimppm 'ime_controller.js'
 vimppm 'jweather.js'
 vimppm 'PDF.js.js'
-vimppm 'pypi.js'
-vimppm 'QB.js'
 vimppm 'sbmcommentsviewer.js'
 vimppm 'slideshare.js'
 vimppm 'statstat.js'
 vimppm 'statusline-toolbar.js'
 vimppm 'stylish.js'
-vimppm 'tabsort.js'
+" vimppm 'google-tasks.js'
+" vimppm 'hints-for-embedded.js'
+" vimppm 'history-search-backward.js'
+" vimppm 'httpstatus.js'
+" vimppm 'pypi.js'
+" vimppm 'QB.js'
+" vimppm 'appendAnchor.js'
+" vimppm 'alert.js'
+" vimppm 'tabsort.js'
 
-" =================================================
 
 style -name tw-sidebar-hidden-time chrome://* .tw-anekos-sb-plugin-tweet-panel { border-radius: 5px; margin: 2px; background-color: #073642 !important; color: #839496;} .tw-anekos-sb-plugin-item-sub { border-radius: 5px; background-color: #268bd2 !important; color: #073642 } .tw-anekos-sb-plugin-tweet-reply-my { background-color: #eee8d5 !important; } #tw-sidebar-page .scrollbox-innerbox { background-color: #586e75 !important; } .tw-anekos-sb-plugin-item-name.tw-anekos-sb-plugin-tweet-protected { border-radius: 5px; } .tw-anekos-sb-plugin-tweet-panel > hbox > vbox:first-child > image { display: inline-block; border: solid 1px #000; overflow: hidden; border-radius: 10px; }
 
-js<<EOM
-commands.addUserCommand(
-  ['pikadorei'],
-  'You Slave of Pika!',
-  function () {
-    let (doc=content.document,colors='red green blue'.split(/\s/),i=0)
-      setInterval(function() doc.body.style.backgroundColor=colors[(i++,i%=colors.length)], 100)
-  },
-  {},
-  true
-);
-EOM
-
 command -nargs=1 sleep js liberator.sleep(<args>);
-set statuslinetoolbars=ankpixiv-toolbar-button,webclipper3-button,feed-button,sync-button,kindle-it-button
 
 " vim: set ts=4 sts=0 sw=4 fenc=utf8 ff=unix ft=vimperator:
+
