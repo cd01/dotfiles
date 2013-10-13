@@ -32,12 +32,6 @@ EOM
 set! ui.key.generalAccessKey=0
 set! ui.key.contentAccessKey=0
 
-
-" ime_controller.js
-let g:ex_ime_mode = "inactive"
-let g:textarea_ime_mode = "inactive"
-
-
 set editor='vim'
 
 " vimpからはてブアドオン操作
