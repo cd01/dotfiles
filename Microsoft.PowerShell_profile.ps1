@@ -1,43 +1,58 @@
 $home_dir = $env:userprofile
 
+if (-not (Test-Path ~\backuptxt)) { mkdir ~\backuptxt }
+
+function backup {
+    param([string]$filename, $exepath)
+
+    $backup = Join-Path "~\backuptxt" ((Get-Date).ToString("yyyyMMdd_hhmmss_") + (Split-Path $filename -Leaf))
+    cp $filename $backup
+    & $exepath $filename
+}
+
 function vi($filename) {
     vim.bat $filename -N -u NONE -i NONE --noplugin
 }
 
 function vim($filename) {
-    &  "$home_dir\tools\vim\gvim.exe" $filename
+    backup $filename "$home_dir\tools\vim\gvim.exe"
 }
 
 function gvim($filename) {
-    & "$home_dir\tools\vim\gvim.exe" $filename
+    backup $filename "$home_dir\tools\vim\gvim.exe"
 }
 
-function me($filename) {
-	if($filename -eq $null)
-	{
-		$filename = $(Get-Date).ToString("yyyyMMdd_hhmmss") + ".txt"
-		$filepath = "C:\Program Files\TeraPad\tmp\" + $filename
-		New-Item $filepath -itemType File
-		& "$home_dir\tools\Mery\Mery.exe" "$filepath"
-	}
-	else
-	{
-		& "$home_dir\tools\Mery\Mery.exe" "$filename"
-	}
+# https://bitbucket.org/moswald/powershell/src/805b6eca148347357ae94f737c26ad6f43689359/curl.ps1?at=default
+function curl {
+    param([string]$url)
+    return (new-object System.Net.WebClient).DownloadString($url)
 }
 
-function x() { exit }
-function q() { exit }
+function hibernate {
+    param($min)
+    timeout ($min * 60)
+# Get-History | Export-CliXML ~\.posh_history.xml
+    shutdown /h
+}
 
-function sb() {
-	& 'C:\Program Files\Spybot - Search & Destroy\spybot_update.bat'
+function x {
+# Get-History | Export-CliXML ~\.posh_history.xml
+    # Prompt ‚Åˆês‚²‚Æ‚É’Ç‰Á‚µ‚½‚Ù‚¤‚ª‚¢‚¢‚©‚à
+    # ~\.posh_history ‚Ìd•¡‚ðíœ‚·‚é
+    exit
+}
+
+Import-Csv ~\.posh_history.csv | Add-History
+
+function sb {
+    & 'C:\Program Files\Spybot - Search & Destroy\spybot_update.bat'
 }
 
 Set-Alias firefox 'C:\Program Files\Mozilla Firefox\firefox.exe'
-Set-Alias chrome 'C:\Program Files\Google\Chrome\Application\chrome.exe'
-Set-Alias sh 'C:\MinGW\msys\1.0\bin\sh.exe'
+Set-Alias chrome  'C:\Program Files\Google\Chrome\Application\chrome.exe'
+Set-Alias sh      'C:\MinGW\msys\1.0\bin\sh.exe'
 
-function gst() { git status }
+function gst { git status }
 function gcmm($message) { git commit -m $message }
 
 $MaximumHistoryCount = 2000
@@ -55,4 +70,20 @@ $global:GitPromptSettings.UntrackedForegroundColor = [ConsoleColor]::DarkRed
 function sudo {
     $args[1] = (Convert-Path $args[1])
     Start-Process $args[0] -Verb "runas" -ArgumentList $args[1..($args.Length - 1)]
+}
+
+function Prompt {
+    # PowerShell 3.0+
+    # Export-Csv -Path ~\.posh_history.csv -InputObject (Get-History)[-1] -Append
+
+    # PowerShell 2.0+
+    if (-not (Test-Path ~\.posh_history.csv)) {
+        "#TYPE Microsoft.PowerShell.Commands.HistoryInfo" | Out-File ~\.posh_history.csv -encoding UTF8
+        '"Id","CommandLine","ExecutionStatus","StartExecutionTime","EndExecutionTime"' | Out-File ~\.posh_history.csv -encoding UTF8 -append
+    }
+    $h = (Get-History)[-1]
+    $csv = "`"$($h.Id)`",`"$($h.CommandLine)`",`"$($h.ExecutionStatus)`",`"$($h.StartExecutionTime)`",`"$($h.EndExecutionTime)`""
+    $csv | Out-File ~\.posh_history.csv -encoding UTF8 -append
+
+    return "$pwd > "
 }
