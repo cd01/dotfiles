@@ -31,16 +31,10 @@ function curl {
 function hibernate {
     param($min)
     timeout ($min * 60)
-# Get-History | Export-CliXML ~\.posh_history.xml
     shutdown /h
 }
 
-function x {
-# Get-History | Export-CliXML ~\.posh_history.xml
-    # Prompt で一行ごとに追加したほうがいいかも
-    # ~\.posh_history の重複を削除する
-    exit
-}
+function x { exit }
 
 Import-Csv ~\.posh_history.csv | Add-History
 
@@ -56,16 +50,6 @@ function gst { git status }
 function gcmm($message) { git commit -m $message }
 
 $MaximumHistoryCount = 2000
-
-# Load posh-git profile
-. 'C:\tools\poshgit\dahlbyk-posh-git-22f4e77\profile.ps1'
-
-# 参考: https://github.com/dahlbyk/posh-git/blob/master/GitPrompt.ps1
-$global:GitPromptSettings.BranchForegroundColor    = [ConsoleColor]::DarkGreen
-$global:GitPromptSettings.WorkingForegroundColor   = [ConsoleColor]::DarkYellow
-$global:GitPromptSettings.BeforeForegroundColor    = [ConsoleColor]::DarkCyan
-$global:GitPromptSettings.AfterForegroundColor     = [ConsoleColor]::DarkCyan
-$global:GitPromptSettings.UntrackedForegroundColor = [ConsoleColor]::DarkRed
 
 function sudo {
     $args[1] = (Convert-Path $args[1])
