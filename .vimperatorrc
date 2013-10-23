@@ -23,6 +23,15 @@ cnoremap <C-w> <C-BS>
 noremap ,st :stylish turnall<CR>
 noremap ,t js:var echofonListButton=document.getElementById("listsButton");echofonListButton.click();
 
+
+js<<EOM
+    mappings.add(
+        [modes.NORMAL, modes.INSERT],
+        ["<C-v>"], "Ignore next key and send it directly to the webpage",
+        function () { modes.passNextKey = true; }
+    );
+EOM
+
 js<<EOM
   // ~/.vimperator/info/default のパスを変える
   liberator.modules.storage.infoPath.initWithPath(File.expandPath("~/.vimperatorInfo"));
