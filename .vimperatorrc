@@ -210,5 +210,18 @@ command -nargs=1 sleep js liberator.sleep(<args>);
 " http://vimperator.g.hatena.ne.jp/teramako/20090311/1236776437
 style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
 
+js<<EOM
+    liberator.globalVariables.copy_templates = [
+        { label: 'markdown'        , value: '[%TITLE%](%URL%)'},
+        { label: 'restructuredText', value: '`%TITLE% <%URL%>`_'},
+
+        { label: 'titleAndURL'     , value: '%TITLE%\n%URL%' },
+        { label: 'title'           , value: '%TITLE%' },
+        { label: 'anchor'          , value: '<a href="%URL%">%TITLE%</a>' },
+        { label: 'selanchor'       , value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },
+        { label: 'htmlblockquote'  , value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },
+    ];
+EOM
+
 " vim: set ts=4 sts=0 sw=4 fenc=utf8 ff=unix ft=vimperator:
 
