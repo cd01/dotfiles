@@ -41,7 +41,7 @@ EOM
 set! ui.key.generalAccessKey=0
 set! ui.key.contentAccessKey=0
 
-set editor='vim'
+set editor='%USERPROFILE%\\tools\\vim\\gvim.exe'
 
 " [Vimperator ではてなブックマーク拡張を使う ・ hatena/hatena-bookmark-xul Wiki]
 " (https://github.com/hatena/hatena-bookmark-xul/wiki/Vimperator-%E3%81%A7%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E6%8B%A1%E5%BC%B5%E3%82%92%E4%BD%BF%E3%81%86)
