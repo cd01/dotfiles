@@ -43,17 +43,9 @@ set! ui.key.contentAccessKey=0
 
 set editor='vim'
 
-" vimpからはてブアドオン操作
-" https://github.com/hatena/hatena-bookmark-xul/wiki/Vimperator-ではてなブックマーク拡張を使う
-" http://d.hatena.ne.jp/ruedap/20110407/vimperator_hatena_bookmark_firefox_operation
+" [Vimperator ではてなブックマーク拡張を使う ・ hatena/hatena-bookmark-xul Wiki]
+" (https://github.com/hatena/hatena-bookmark-xul/wiki/Vimperator-%E3%81%A7%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E6%8B%A1%E5%BC%B5%E3%82%92%E4%BD%BF%E3%81%86)
 js <<EOM
-    liberator.globalVariables.hBookmark_shortcuts = { 
-         hintsAdd     : 'B',
-         hintsComment : '',
-         add          : [''],
-         comment      : ['C'],
-    };
-
     if (typeof hBookmark != 'undefined') {
         liberator.loadScript(
             'chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js',
