@@ -16,7 +16,7 @@ def configure(keymap):
     keymap_global["C-M"]           = "Enter"
     keymap_global["W-q"]           = "A-F4"
     keymap_global["C-OpenBracket"] = "Esc"
-    keymap_global["C-Space"]       = "244" # IME ON/OFF
+    # keymap_global["C-Space"]       = "244" # IME ON/OFF
 
     keymap_global["A-N"] = keymap.command_InputText("cd01")
 
@@ -32,7 +32,6 @@ def configure(keymap):
     keymap_global["A-Atmark"] = keymap.command_RecordPlay
 
 
-    # TODO: ckw.exe だと何故か効かない
     def processname_is_ps(window):
         return window.getProcessName() == "powershell.exe"
 
@@ -49,13 +48,13 @@ def configure(keymap):
         return window.getProcessName() == "iTunes.exe"
 
     keymap_itunes = keymap.defineWindowKeymap(check_func=processname_is_itunes)
-    keymap_itunes["Space"] = keymap.command_ShellExecute(
-                                                        None,
-                                                        "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-                                                        "-NoProfile -ExecutionPolicy unrestricted -Command (New-Object -ComObject 'iTunes.Application').PlayPause()",
-                                                        os.path.expandvars("%USERPROFILE%"),
-                                                        "minimized"
-                                                    )
+    # keymap_itunes["Space"] = keymap.command_ShellExecute(
+    #                                                     None,
+    #                                                     "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    #                                                     "-NoProfile -ExecutionPolicy unrestricted -Command (New-Object -ComObject 'iTunes.Application').PlayPause()",
+    #                                                     os.path.expandvars("%USERPROFILE%"),
+    #                                                     "minimized"
+    #                                                 )
 
     # className じゃなくて、プロセス名にできない？
     def command_ActivateOrExecute(className, filename, param = "", directory = ""):
@@ -67,16 +66,16 @@ def configure(keymap):
             wnd.setForeground()
         else:
             swMaximize = 3;
-            executeFunc = keymap.command_ShellExecute(None, filename, param, directory, swMaximize)
+            executeFunc = keymap.command_ShellExecute(None, os.path.expandvars(filename), os.path.expandvars(param), os.path.expandvars(directory), swMaximize)
             executeFunc()
 
-    keymap_global["C-S-P"] = lambda: command_ActivateOrExecute("CkwWindowClass"    , os.path.expandvars("%USERPROFILE%\\tools\\ckw\\ckw.exe"))
-    keymap_global["C-S-G"] = lambda: command_ActivateOrExecute("Vim"               , os.path.expandvars("%USERPROFILE%\\tools\\vim\\gvim.exe"))
-    keymap_global["C-S-M"] = lambda: command_ActivateOrExecute("mintty"            , "C:\\MinGW\\msys\\1.0\\bin\\mintty.exe", "/bin/bash --login -i")
-    keymap_global["C-S-I"] = lambda: command_ActivateOrExecute("IEFrame"           , "C:\\Program Files\\Internet Explorer\\iexplore.exe")
-    keymap_global["C-S-C"] = lambda: command_ActivateOrExecute("Chrome_WidgetWin_1", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe")
-    keymap_global["C-S-F"] = lambda: command_ActivateOrExecute("MozillaWindowClass", "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe") # Firefoxだけ、なぜかForegroundにならない・・・orz
-    keymap_global["C-S-D"] = lambda: command_ActivateOrExecute("CabinetWClass"     , "explorer", "/e," + os.path.expandvars("%USERPROFILE%\\Downloads"))
+    keymap_global["C-S-P"] = lambda: command_ActivateOrExecute("VirtualConsoleClass", "%ProgramW6432%\\ConEmu\\ConEmu64.exe", "/Dir %USERPROFILE%")
+    keymap_global["C-S-G"] = lambda: command_ActivateOrExecute("Vim"                , "%USERPROFILE%\\tools\\vim\\gvim.exe")
+    keymap_global["C-S-M"] = lambda: command_ActivateOrExecute("mintty"             , "C:\\MinGW\\msys\\1.0\\bin\\mintty.exe", "/bin/bash --login -i")
+    keymap_global["C-S-I"] = lambda: command_ActivateOrExecute("IEFrame"            , "%ProgramW6432%\\Internet Explorer\\iexplore.exe")
+    keymap_global["C-S-C"] = lambda: command_ActivateOrExecute("Chrome_WidgetWin_1" , "%ProgramFiles(x86)%\\Google\\Chrome\\Application\\chrome.exe")
+    keymap_global["C-S-F"] = lambda: command_ActivateOrExecute("MozillaWindowClass" , "%ProgramFiles(x86)%\\Mozilla Firefox\\firefox.exe") # Firefoxだけ、なぜかForegroundにならない・・・orz
+    keymap_global["C-S-D"] = lambda: command_ActivateOrExecute("CabinetWClass"      , "explorer", "/e,%USERPROFILE%\\Downloads")
 
     # sendMessageでシステムコマンドを実行
     if 1:
@@ -187,4 +186,4 @@ def configure(keymap):
     # カーソル位置のRGB情報取得
     keymap_global["W-c"] = color_picker
 
-# vim: set expandtab:
+# vim: set expandtab ts=4 sw=4 sts=4:
