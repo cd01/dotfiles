@@ -16,10 +16,15 @@ set swapfile
 set directory=~/.vimswap
 set backup
 set backupdir=~/.vimbackup
+set noundofile
+
+" settings for golang
+set rtp+=$GOROOT/misc/vim 
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 
 autocmd BufRead,BufNewFile *.md set filetype=mkd
 
-"======================= NeoBundle =======================
+" >>>>>>>>>>>>>>>>>>>>>>> NeoBundle >>>>>>>>>>>>>>>>>>>>>>>
 set nocompatible               " Be iMproved
 
 " if use proxy, enable neneobundle_default_git_protocol.
@@ -40,26 +45,16 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'milk.vim'
-NeoBundle 'sk1418/last256'
 
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mattn/excitetranslate-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'mhinz/vim-startify'
-NeoBundle 'osyo-manga/vim-over'
-NeoBundle 'elzr/vim-json'
 
 NeoBundle 'glidenote/memolist.vim'
 NeoBundle 'koron/codic-vim'
 NeoBundle 'mattn/googletasks-vim'
-" ctrlp
-
-NeoBundle 'itchyny/calendar.vim'
-if neobundle#is_installed('calendar')
-    let g:calendar_google_calendar = 1
-    let g:calendar_google_task = 1
-endif
-
+NeoBundle 'mattn/sonictemplate-vim'
 
 NeoBundle 'Align'
 if neobundle#is_installed('Align')
@@ -77,7 +72,9 @@ NeoBundleLazy 'nosami/Omnisharp', {
 \ }
 
 NeoBundleLazy 'davidhalter/jedi-vim'        , {'autoload': {'filetypes': ['python']}}
-autocmd FileType python let b:did_ftplugin = 1
+if neobundle#is_installed('jedi')
+    autocmd FileType python let b:did_ftplugin = 1
+endif
 
 NeoBundleLazy 'mattn/mkdpreview-vim'        , {'autoload': {'filetypes': ['markdown']}}
 
@@ -87,11 +84,13 @@ NeoBundleLazy 'kchmck/vim-coffee-script'    , {'autoload': {'filetypes': ['coffe
 NeoBundleLazy 'tpope/vim-markdown'          , {'autoload': {'filetypes': ['markdown']}}
 NeoBundleLazy 'nginx.vim'                   , {'autoload': {'filetypes': ['conf']}}
 NeoBundleLazy 'PProvost/vim-ps1'            , {'autoload': {'filetypes': ['ps1']}}
+NeoBundleLazy 'elzr/vim-json'               , {'autoload': {'filetypes': ['json']}}
+
 
 filetype plugin indent on     " Required!
 
 NeoBundleCheck                " Installation check.
-"======================= NeoBundle =======================
+" <<<<<<<<<<<<<<<<<<<<<<< NeoBundle <<<<<<<<<<<<<<<<<<<<<<<
 
 " Vimperator syntax file
 " ここを関数にまとめて、ディレクトリとURLを指定したら、
@@ -112,6 +111,9 @@ endif
 
 colorscheme milk
 
-" vim:set et ts=4 sts=0 sw=4 ff=unix:
+" settings for poshcomplete-vim
+set rtp+=~\Dropbox\dev\poshcomplete-vim
+autocmd FileType ps1 :setl omnifunc=poshcomplete#CompleteCommand
 
+" vim:set et ts=4 sts=0 sw=4 ff=unix:
 
