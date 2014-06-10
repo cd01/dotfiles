@@ -1,0 +1,8 @@
+﻿# cd01's dotfiles
+
+* Elevate UAC before execute mklink.bat
+
+# TODO
+
+* [ ] Windows だけの設定ファイルは分けたほうが良さそう
+
