@@ -183,6 +183,7 @@ vimppm 'slideshare.js'
 vimppm 'statstat.js'
 vimppm 'statusline-toolbar.js'
 vimppm 'stylish.js'
+vimppm 'erection.js'
 " vimppm 'google-tasks.js'
 " vimppm 'hints-for-embedded.js'
 " vimppm 'history-search-backward.js'
@@ -204,16 +205,22 @@ style -name commandline-ime chrome://* #liberator-commandline-command input {ime
 
 js<<EOM
     liberator.globalVariables.copy_templates = [
+        { label: 'titleAndURL'     , value: '%TITLE%\n%URL%' },
+
         { label: 'markdown'        , value: '[%TITLE%](%URL%)'},
         { label: 'restructuredText', value: '`%TITLE% <%URL%>`_'},
 
-        { label: 'titleAndURL'     , value: '%TITLE%\n%URL%' },
         { label: 'title'           , value: '%TITLE%' },
         { label: 'anchor'          , value: '<a href="%URL%">%TITLE%</a>' },
         { label: 'selanchor'       , value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },
         { label: 'htmlblockquote'  , value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },
     ];
 EOM
+
+set focuscontent
+set complete=sl
+
+set gui=noaddons,nobookmarks,nomenu,nonavigation,tabs,nohatehaBookmarks
 
 " vim: set ts=4 sts=0 sw=4 fenc=utf8 ff=unix ft=vimperator:
 

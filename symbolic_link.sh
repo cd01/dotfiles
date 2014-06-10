@@ -1,3 +1,4 @@
+#!/bin/sh
 ln -s ~/Dropbox/dotfiles/.vimrc ~/.vimrc
 ln -s ~/Dropbox/dotfiles/.vim ~/.vim
 ln -s ~/Dropbox/dotfiles/.gvimrc ~/.gvimrc
