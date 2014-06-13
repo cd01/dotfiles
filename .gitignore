@@ -2,3 +2,4 @@
 !.vimperator/*/.gitkeep
 .vim/*/*
 !.vim/*/.gitkeep
+!.vim/bundle/neobundle.vim
