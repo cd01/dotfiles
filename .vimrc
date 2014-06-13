@@ -62,6 +62,13 @@ if neobundle#is_installed('Align')
     let g:DrChipTopLvlMenu = ""
 endif
 
+NeoBundle 'kana/vim-operator-user'
+NeoBundle 'tyru/operator-camelize.vim'
+if neobundle#is_installed('operator-camelize.vim') && neobundle#is_installed('vim-operator-user')
+    map <Leader>c <Plug>(operator-camelize)
+    map <Leader>C <Plug>(operator-decamelize)
+endif
+
 NeoBundleLazy 'nosami/Omnisharp', {
 \   'autoload': {'filetypes': ['cs']},
 \   'build': {
@@ -72,7 +79,7 @@ NeoBundleLazy 'nosami/Omnisharp', {
 \ }
 
 NeoBundleLazy 'davidhalter/jedi-vim'        , {'autoload': {'filetypes': ['python']}}
-if neobundle#is_installed('jedi')
+if neobundle#is_installed('jedi-vim')
     autocmd FileType python let b:did_ftplugin = 1
 endif
 
