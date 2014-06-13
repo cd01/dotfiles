@@ -1,3 +1,4 @@
-.vimperator/
-.vim/
-
+.vimperator/*
+.vimperator/.gitkeep
+.vim/*
+.vim/.gitkeep
