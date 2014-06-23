@@ -91,6 +91,7 @@ NeoBundleLazy 'kchmck/vim-coffee-script'    , {'autoload': {'filetypes': ['coffe
 NeoBundleLazy 'tpope/vim-markdown'          , {'autoload': {'filetypes': ['markdown']}}
 NeoBundleLazy 'nginx.vim'                   , {'autoload': {'filetypes': ['conf']}}
 NeoBundleLazy 'PProvost/vim-ps1'            , {'autoload': {'filetypes': ['ps1']}}
+NeoBundleLazy 'cd01/poshcomplete-vim'       , {'autoload': {'filetypes': ['ps1']}}
 NeoBundleLazy 'elzr/vim-json'               , {'autoload': {'filetypes': ['json']}}
 
 
