@@ -2,3 +2,8 @@
 
 * In Windows, Elevate UAC before execute win/mklink.bat
 
+# TODO
+
+* [ ] Replace symbolic_link.sh to Makefile ??
+* [ ] Add vimppm as submodule
+
