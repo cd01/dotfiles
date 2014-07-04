@@ -50,11 +50,13 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mattn/excitetranslate-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'mhinz/vim-startify'
+NeoBundle 'thinca/vim-quickrun'
 
 NeoBundle 'glidenote/memolist.vim'
 NeoBundle 'koron/codic-vim'
 NeoBundle 'mattn/googletasks-vim'
 NeoBundle 'mattn/sonictemplate-vim'
+NeoBundle 'junegunn/vader.vim'
 
 NeoBundle 'Align'
 if neobundle#is_installed('Align')
