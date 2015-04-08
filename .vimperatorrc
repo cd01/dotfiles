@@ -1,6 +1,5 @@
 set rtp=~/.vimperator
 set history=5000
-set gui=
 set hintchars=ifjklasdweuocvbnm
 set! browser.sessionstore.max_tabs_undo=100
 colorscheme sweets_dita
@@ -21,8 +20,6 @@ cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 cnoremap <C-w> <C-BS>
 noremap ,st :stylish turnall<CR>
-noremap ,t js:var echofonListButton=document.getElementById("listsButton");echofonListButton.click();
-
 
 js<<EOM
     mappings.add(
@@ -36,10 +33,6 @@ js<<EOM
   // ~/.vimperator/info/default のパスを変える
   liberator.modules.storage.infoPath.initWithPath(File.expandPath("~/.vimperatorInfo"));
 EOM
-
-" ページのアクセスキーを無効化
-set! ui.key.generalAccessKey=0
-set! ui.key.contentAccessKey=0
 
 set editor='%USERPROFILE%\\tools\\vim\\gvim.exe'
 
@@ -59,13 +52,6 @@ let g:statstat_expression = "let (output = function(){ let [,cmd,,arg1] = comman
 let g:statstat_autorun    = "true"
 let g:statstat_interval   = "300"
 
-
-" Vimperatorボタン
-js <<EOM
-    var button = document.getElementById("appmenu-button");
-    if (button) button.style.background = "#000000";
-EOM
-
 " feedSomeKeys_3.js
 command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 
@@ -73,17 +59,12 @@ command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc
 lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c / j,n k,p n,j p,k o u e x s r a # [ ] ? gi gs gt gd ga gc
 
-lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
-lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
-
-
 map ,r :so ~/.vimperatorrc<CR>:loadplugins<CR>:echo 'Reload .vimperatorrc and loadplugins!!'<CR>
 
 " :dia sqlitemanagerで起動できるらしい。要確認
 js <<EOM
     config.dialogs.push([ 'sqlitemanager', 'SQLite Manager', function() openUILinkIn('chrome://sqlitemanager/content/sqlitemanager.xul', 'tab') ]);
 EOM
-
 
 let g:twittperator_use_ssl_connection_for_api_ep = 1
 let g:twittperator_use_chirp                     = 1
@@ -158,7 +139,6 @@ EOM
 
 let g:twittperator_plugin_twsidebar_expand_url = 1
 
-
 " vimppm - Vimperator plugin manager
 so ~/Dropbox/dev/vimppm/plugin/vimppm.js
 
@@ -194,9 +174,6 @@ vimppm 'erection.js'
 " vimppm 'alert.js'
 " vimppm 'tabsort.js'
 
-
-style -name tw-sidebar-hidden-time chrome://* .tw-anekos-sb-plugin-tweet-panel { border-radius: 5px; margin: 2px; background-color: #073642 !important; color: #839496;} .tw-anekos-sb-plugin-item-sub { border-radius: 5px; background-color: #268bd2 !important; color: #073642 } .tw-anekos-sb-plugin-tweet-reply-my { background-color: #eee8d5 !important; } #tw-sidebar-page .scrollbox-innerbox { background-color: #586e75 !important; } .tw-anekos-sb-plugin-item-name.tw-anekos-sb-plugin-tweet-protected { border-radius: 5px; } .tw-anekos-sb-plugin-tweet-panel > hbox > vbox:first-child > image { display: inline-block; border: solid 1px #000; overflow: hidden; border-radius: 10px; }
-
 command -nargs=1 sleep js liberator.sleep(<args>);
 
 " ime_controller.js を使わずに style コマンドで - Vimple Star Sprites - vimperatorグループ
@@ -222,4 +199,3 @@ set complete=sl
 set gui=noaddons,nobookmarks,nomenu,nonavigation,tabs,nohatehaBookmarks
 
 " vim: set ts=4 sts=0 sw=4 fenc=utf8 ff=unix ft=vimperator:
-
