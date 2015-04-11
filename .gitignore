@@ -3,3 +3,5 @@
 .vim/*/*
 !.vim/*/.gitkeep
 !.vim/bundle/neobundle.vim
+.vim/.netrwhist
+.muttrc
