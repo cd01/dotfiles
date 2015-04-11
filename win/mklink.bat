@@ -1,22 +1,49 @@
-if exist "%USERPROFILE%\.bashrc" del "%USERPROFILE%\.bashrc"
-mklink /h "%USERPROFILE%\.bashrc" "%USERPROFILE%\Dropbox\dotfiles\.bashrc"
+@echo off
 
-if exist "%USERPROFILE%\.vimrc" del "%USERPROFILE%\.vimrc"
-mklink /h "%USERPROFILE%\.vimrc" "%USERPROFILE%\Dropbox\dotfiles\.vimrc"
+set destDir=%USERPROFILE%
+set srcDir=%USERPROFILE%\Dropbox\dotfiles
 
-if exist "%USERPROFILE%\.gvimrc" del "%USERPROFILE%\.gvimrc"
-mklink /h "%USERPROFILE%\.gvimrc" "%USERPROFILE%\Dropbox\dotfiles\.gvimrc"
+call :mkHardlink %destDir%\.bashrc       %srcDir%\.bashrc
+call :mkHardlink %destDir%\.vimrc        %srcDir%\.vimrc
+call :mkHardlink %destDir%\.gvimrc       %srcDir%\.gvimrc
+call :mkHardlink %destDir%\.vimperatorrc %srcDir%\.vimperatorrc
+call :mkHardlink %destDir%\.vsvim        %srcDir%\win\.vsvim
+call :mkHardlink %destDir%\.minttyrc     %srcDir%\win\.minttyrc
 
-if exist "%USERPROFILE%\.vimperatorrc" del "%USERPROFILE%\.vimperatorrc"
-mklink /h "%USERPROFILE%\.vimperatorrc" "%USERPROFILE%\Dropbox\dotfiles\.vimperatorrc"
+if not exist %destDir%\AppData\Roaming\keyhac mkdir %destDir%\AppData\Roaming\keyhac
+call :mkHardlink %destDir%\AppData\Roaming\keyhac\config.py %srcDir%\win\keyhac_config.py
 
-if exist "%USERPROFILE%\.vsvim" del "%USERPROFILE%\.vsvim"
-mklink /h "%USERPROFILE%\.vsvim" "%USERPROFILE%\Dropbox\dotfiles\win\.vsvim"
+if not exist %destDir%\Documents\WindowsPowerShell mkdir %destDir%\Documents\WindowsPowerShell
+call :mkHardlink %destDir%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 %srcDir%\win\Microsoft.PowerShell_profile.ps1
 
-mklink /j "%USERPROFILE%\vimfiles"                         "%USERPROFILE%\Dropbox\dotfiles\.vim"
-mklink /j "%USERPROFILE%\.vimperator"                      "%USERPROFILE%\Dropbox\dotfiles\.vimperator"
-mklink /h "%USERPROFILE%\.minttyrc"                        "%USERPROFILE%\Dropbox\dotfiles\win\.minttyrc"
-mkdir %USERPROFILE%\AppData\Roaming\keyhac
-mklink /h "%USERPROFILE%\AppData\Roaming\keyhac\config.py" "%USERPROFILE%\Dropbox\dotfiles\win\keyhac_config.py"
-mkdir %USERPROFILE%\Documents\WindowsPowerShell
-mklink /h "%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" "%USERPROFILE%\Dropbox\dotfiles\win\Microsoft.PowerShell_profile.ps1"
+call :mkJunction %destDir%\.vim        %srcDir%\.vim
+call :mkJunction %destDir%\vimfiles    %srcDir%\.vim
+call :mkJunction %destDir%\.vimperator %srcDir%\.vimperator
+
+goto :eof
+
+:mkJunction
+    set to=%1
+    set from=%2
+
+    if exist %to% (
+        echo "Delete %to%"
+        rmdir %to%
+    )
+
+    mklink /j %to% %from%
+exit /b
+
+:mkHardlink
+    set to=%1
+    set from=%2
+
+    if exist %to% (
+        echo "Delete %to%"
+        del %to%
+    )
+
+    mklink /h %to% %from%
+exit /b
+
+:eof
