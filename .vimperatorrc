@@ -1,6 +1,6 @@
 set rtp=~/.vimperator
 set history=5000
-set gui=
+set gui=nonavigation
 set hintchars=ifjklasdweuocvbnm
 set! browser.sessionstore.max_tabs_undo=100
 colorscheme sweets_dita
@@ -8,7 +8,6 @@ colorscheme sweets_dita
 map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 nnoremap ,e :clearly<CR>
-nnoremap ,E :clearly save<CR>
 nnoremap h gT
 nnoremap l gt
 nnoremap -urls=www\\.slideshare\\.net l :slideshare next<CR>
@@ -23,6 +22,7 @@ cnoremap <C-w> <C-BS>
 noremap ,st :stylish turnall<CR>
 noremap ,t js:var echofonListButton=document.getElementById("listsButton");echofonListButton.click();
 
+imap <Esc>d <C-Del>
 
 js<<EOM
     mappings.add(
@@ -30,17 +30,16 @@ js<<EOM
         ["<C-v>"], "Ignore next key and send it directly to the webpage",
         function () { modes.passNextKey = true; }
     );
-EOM
 
-js<<EOM
-  // ~/.vimperator/info/default のパスを変える
-  liberator.modules.storage.infoPath.initWithPath(File.expandPath("~/.vimperatorInfo"));
+    // ~/.vimperator/info/default のパスを変える
+    liberator.modules.storage.infoPath.initWithPath(File.expandPath("~/.vimperatorInfo"));
 EOM
 
 " ページのアクセスキーを無効化
 set! ui.key.generalAccessKey=0
 set! ui.key.contentAccessKey=0
 
+" TODO: Windowsのみ
 set editor='%USERPROFILE%\\tools\\vim\\gvim.exe'
 
 " [Vimperator ではてなブックマーク拡張を使う ・ hatena/hatena-bookmark-xul Wiki]
@@ -60,12 +59,6 @@ let g:statstat_autorun    = "true"
 let g:statstat_interval   = "300"
 
 
-" Vimperatorボタン
-js <<EOM
-    var button = document.getElementById("appmenu-button");
-    if (button) button.style.background = "#000000";
-EOM
-
 " feedSomeKeys_3.js
 command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 
@@ -79,12 +72,8 @@ lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 
 map ,r :so ~/.vimperatorrc<CR>:loadplugins<CR>:echo 'Reload .vimperatorrc and loadplugins!!'<CR>
 
-" :dia sqlitemanagerで起動できるらしい。要確認
-js <<EOM
-    config.dialogs.push([ 'sqlitemanager', 'SQLite Manager', function() openUILinkIn('chrome://sqlitemanager/content/sqlitemanager.xul', 'tab') ]);
-EOM
 
-
+" twittperator
 let g:twittperator_use_ssl_connection_for_api_ep = 1
 let g:twittperator_use_chirp                     = 1
 let g:twittperator_plugin_twsidebar              = 1
@@ -195,8 +184,6 @@ vimppm 'erection.js'
 " vimppm 'tabsort.js'
 
 
-style -name tw-sidebar-hidden-time chrome://* .tw-anekos-sb-plugin-tweet-panel { border-radius: 5px; margin: 2px; background-color: #073642 !important; color: #839496;} .tw-anekos-sb-plugin-item-sub { border-radius: 5px; background-color: #268bd2 !important; color: #073642 } .tw-anekos-sb-plugin-tweet-reply-my { background-color: #eee8d5 !important; } #tw-sidebar-page .scrollbox-innerbox { background-color: #586e75 !important; } .tw-anekos-sb-plugin-item-name.tw-anekos-sb-plugin-tweet-protected { border-radius: 5px; } .tw-anekos-sb-plugin-tweet-panel > hbox > vbox:first-child > image { display: inline-block; border: solid 1px #000; overflow: hidden; border-radius: 10px; }
-
 command -nargs=1 sleep js liberator.sleep(<args>);
 
 " ime_controller.js を使わずに style コマンドで - Vimple Star Sprites - vimperatorグループ
@@ -219,8 +206,6 @@ EOM
 
 set focuscontent
 set complete=sl
-
-set gui=noaddons,nobookmarks,nomenu,nonavigation,tabs,nohatehaBookmarks
 
 " vim: set ts=4 sts=0 sw=4 fenc=utf8 ff=unix ft=vimperator:
 
