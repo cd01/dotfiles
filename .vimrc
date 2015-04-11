@@ -64,7 +64,6 @@ NeoBundle 'mattn/yamada2-vim'
 NeoBundle 'koron/nyancat-vim'
 " NeoBundle 'koron/homoo-vim'
 NeoBundle 'rbtnn/puyo.vim'
-NeoBundle 'TwitVim'
 
 NeoBundle 'junegunn/vader.vim'
 
@@ -122,11 +121,11 @@ let g:quickrun_config.fsharp = {
 \   'tempfile': '%{tempname()}.fs',
 \ }
 
+call neobundle#end()
 
 filetype plugin indent on     " Required!
 
 NeoBundleCheck                " Installation check.
-call neobundle#end()
 " <<<<<<<<<<<<<<<<<<<<<<< NeoBundle <<<<<<<<<<<<<<<<<<<<<<<
 
 " Vimperator syntax file
