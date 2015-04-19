@@ -10,11 +10,12 @@ set shiftwidth=4
 set softtabstop=0
 
 set spelllang=en,cjk
-" set renderoptions=type:directx
 
 set swapfile
+" TODO: なかったら作る
 set directory=~/.vimswap
 set backup
+" TODO: なかったら作る
 set backupdir=~/.vimbackup
 set noundofile
 
@@ -62,7 +63,6 @@ NeoBundle 'mattn/flappyvird-vim'
 NeoBundle 'mattn/yamada-vim'
 NeoBundle 'mattn/yamada2-vim'
 NeoBundle 'koron/nyancat-vim'
-" NeoBundle 'koron/homoo-vim'
 NeoBundle 'rbtnn/puyo.vim'
 
 NeoBundle 'junegunn/vader.vim'
@@ -145,8 +145,6 @@ if file_readable($SYNTAX_DIR . '/vimperator.vim') == 0
     endif
 endif
 
-colorscheme milk
-
 function! PecoOpen()
     for filename in split(system("find . -type f | peco"), "\n")
         execute "edit" filename
@@ -157,4 +155,3 @@ nnoremap <Leader>op :call PecoOpen()<CR>
 autocmd FileType ps1 :setl omnifunc=poshcomplete#CompleteCommand
 
 " vim:set et ts=4 sts=0 sw=4 ff=unix:
-
