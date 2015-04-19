@@ -2,22 +2,34 @@ syntax on
 
 set expandtab
 set history=2000
+
 set helplang=en,ja
+set spelllang=en,cjk
+
 set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]
+
 set backspace=2
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0
 
-set spelllang=en,cjk
-
 set swapfile
-" TODO: なかったら作る
+if !isdirectory(expand("~/.vimswap"))
+    call mkdir(expand("~/.vimswap"), "p")
+endif
 set directory=~/.vimswap
+
 set backup
-" TODO: なかったら作る
+if !isdirectory(expand("~/.vimbackup"))
+    call mkdir(expand("~/.vimbackup"), "p")
+endif
 set backupdir=~/.vimbackup
-set noundofile
+
+set undofile
+if !isdirectory(expand("~/.vimundofile"))
+    call mkdir(expand("~/.vimundofile"), "p")
+endif
+set undodir=~/.vimundofile
 
 " settings for golang
 set rtp+=$GOROOT/misc/vim 
@@ -42,10 +54,7 @@ call neobundle#begin(expand('~/' . $VIMFILE_DIR . '/bundle/'))
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Color Scheme
 NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'milk.vim'
 
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mattn/excitetranslate-vim', {'depends': 'mattn/webapi-vim'}
@@ -58,14 +67,6 @@ NeoBundle 'glidenote/memolist.vim'
 NeoBundle 'koron/codic-vim'
 NeoBundle 'mattn/googletasks-vim'
 NeoBundle 'mattn/sonictemplate-vim'
-
-NeoBundle 'mattn/flappyvird-vim'
-NeoBundle 'mattn/yamada-vim'
-NeoBundle 'mattn/yamada2-vim'
-NeoBundle 'koron/nyancat-vim'
-NeoBundle 'rbtnn/puyo.vim'
-
-NeoBundle 'junegunn/vader.vim'
 
 NeoBundle 'Align'
 if neobundle#is_installed('Align')
@@ -129,9 +130,7 @@ NeoBundleCheck                " Installation check.
 " <<<<<<<<<<<<<<<<<<<<<<< NeoBundle <<<<<<<<<<<<<<<<<<<<<<<
 
 " Vimperator syntax file
-" ここを関数にまとめて、ディレクトリとURLを指定したら、
-" ないときだけダウンロードするみたいなプラグインにしてもいいかも
-" plugin-downloader-vim
+" TODO: googlecode 無くなるはずだから、修正が必要なのでは
 let $SYNTAX_DIR = expand('~/' . $VIMFILE_DIR . '/syntax')
 let $VIMP_SYNTAX_FILE_URL = "http://vimperator-labs.googlecode.com/hg/vimperator/contrib/vim/syntax/vimperator.vim"
 if file_readable($SYNTAX_DIR . '/vimperator.vim') == 0
