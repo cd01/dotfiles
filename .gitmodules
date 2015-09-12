@@ -55,3 +55,6 @@
 [submodule ".vim/bundle/milk.vim"]
 	path = .vim/bundle/milk.vim
 	url = https://github.com/vim-scripts/milk.vim.git
+[submodule ".vim/bundle/vim-unbundle"]
+	path = .vim/bundle/vim-unbundle
+	url = https://github.com/sunaku/vim-unbundle.git
