@@ -1,4 +1,6 @@
 .vimperator/*/*
-!.vimperator/*/.gitkeep
+.vim/colors/*
+.vim/syntax/*
+.gitkeep
 .vim/.netrwhist
 .muttrc
