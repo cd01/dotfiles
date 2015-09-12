@@ -58,3 +58,6 @@
 [submodule ".vim/bundle/vim-unbundle"]
 	path = .vim/bundle/vim-unbundle
 	url = https://github.com/sunaku/vim-unbundle.git
+[submodule ".vimperator/vimppm"]
+	path = .vimperator/vimppm
+	url = https://github.com/cd01/vimppm.git

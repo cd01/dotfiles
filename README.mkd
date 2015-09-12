@@ -1,13 +1,5 @@
 # cd01's dotfiles
 
-# prepare
-
 ``` sh
 git submodule update --init
 ```
-
-# TODO
-
-* [ ] Replace symbolic_link.sh to Makefile ??
-* [ ] Add vimppm as submodule
-
