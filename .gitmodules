@@ -1,9 +1,6 @@
 [submodule ".vim/bundle/neobundle.vim"]
 	path = .vim/bundle/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim
-[submodule ".vim/bundle/vim-unbundle"]
-	path = .vim/bundle/vim-unbundle
-	url = https://github.com/sunaku/vim-unbundle.git
 [submodule ".vim/ftbundle/python/jedi-vim.git"]
 	path = .vim/ftbundle/python/jedi-vim.git
 	url = https://github.com/davidhalter/jedi-vim.git
