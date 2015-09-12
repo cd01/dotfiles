@@ -58,9 +58,9 @@
 [submodule ".vim/bundle/vim-unbundle"]
 	path = .vim/bundle/vim-unbundle
 	url = https://github.com/sunaku/vim-unbundle.git
-[submodule ".vimperator/vimppm"]
-	path = .vimperator/vimppm
-	url = https://github.com/cd01/vimppm.git
 [submodule ".vim/ftbundle/scala/vim-scala"]
 	path = .vim/ftbundle/scala/vim-scala
 	url = https://github.com/derekwyatt/vim-scala.git
+[submodule ".vimperator/vimppm/vimppm"]
+	path = .vimperator/vimppm/vimppm
+	url = https://github.com/cd01/vimppm.git
