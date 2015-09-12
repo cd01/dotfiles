@@ -34,6 +34,11 @@ let $VIMFILE_DIR = (has('win32') || has('win64')) ? 'vimfiles' : '.vim'
 set rtp+=$GOROOT/misc/vim 
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 
+" go get github.com/mattn/files
+if executable("files")
+    let g:ctrlp_user_command = 'files -p %s'
+endif
+
 runtime bundle/vim-unbundle/plugin/unbundle.vim
 
 autocmd FileType markdown,rst,gitcommit setl cpt+=kspell
