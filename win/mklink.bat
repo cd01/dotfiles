@@ -19,6 +19,7 @@ call :mkHardlink %destDir%\Documents\WindowsPowerShell\Microsoft.PowerShell_prof
 call :mkJunction %destDir%\.vim        %srcDir%\.vim
 call :mkJunction %destDir%\vimfiles    %srcDir%\.vim
 call :mkJunction %destDir%\.vimperator %srcDir%\.vimperator
+call :mkJunction %destDir%\bin         %srcDir%\win\bin
 
 goto :eof
 
