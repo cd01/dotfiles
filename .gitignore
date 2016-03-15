@@ -4,3 +4,6 @@
 .gitkeep
 .vim/.netrwhist
 .muttrc
+win/bin/gvim.bat
+win/bin/vim.bat
+win/bin/sudo.exe
