@@ -1,14 +1,8 @@
 syntax on
 
 set expandtab
-set history=2000
-set helplang=en,ja
-set spelllang=en,cjk
 set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]
-set backspace=2
-set tabstop=4
 set shiftwidth=4
-set softtabstop=0
 
 if !isdirectory(expand("~/.vimswap"))
     call mkdir(expand("~/.vimswap"), "p")
@@ -36,11 +30,6 @@ if isdirectory(expand("$GOROOT/misc/vim"))
     exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 endif
 
-" go get github.com/mattn/files
-if executable("files")
-    let g:ctrlp_user_command = 'files -p %s'
-endif
-
 if filereadable(expand("~/$VIMFILE_DIR/bundle/vim-unbundle/plugin/unbundle.vim"))
     runtime bundle/vim-unbundle/plugin/unbundle.vim
 endif
@@ -58,8 +47,13 @@ if isdirectory(expand("~/$VIMFILE_DIR/ftbundle/ps1/poshcomplete-vim"))
     autocmd FileType ps1 :setl omnifunc=poshcomplete#CompleteCommand
 endif
 
-autocmd FileType markdown,rst,gitcommit setl cpt+=kspell
-autocmd BufRead,BufNewFile *.md  set filetype=markdown
-autocmd BufRead,BufNewFile *.mkd set filetype=markdown
+if executable("jvgrep")
+    set grepprg=jvgrep
+endif
 
-" vim:set et ts=4 sts=0 sw=4 ff=unix:
+set nrformats=
+
+set noequalalways
+set winminwidth=8
+
+" vim:set et sw=4 ff=unix:
