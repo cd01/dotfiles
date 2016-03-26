@@ -1,28 +1,32 @@
 syntax on
-
+set nocompatible
 set expandtab
-set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]
 set shiftwidth=4
 
-if !isdirectory(expand("~/.vimswap"))
-    call mkdir(expand("~/.vimswap"), "p")
+set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]
+
+let $VIMFILE_DIR=(has('win32') || has('win64')) ? 'vimfiles' : '.vim'
+
+let s:swapdirpath="~/var/vim/swap"
+if !isdirectory(expand(s:swapdirpath))
+    call mkdir(expand(s:swapdirpath), "p")
 endif
 set swapfile
-set directory=~/.vimswap
+set directory=~/var/vim/swap
 
-if !isdirectory(expand("~/.vimbackup"))
-    call mkdir(expand("~/.vimbackup"), "p")
+let s:backupdirpath="~/var/vim/backup"
+if !isdirectory(expand(s:backupdirpath))
+    call mkdir(expand(s:backupdirpath), "p")
 endif
 set backup
-set backupdir=~/.vimbackup
+set backupdir=~/var/vim/backup
 
-if !isdirectory(expand("~/.vimundofile"))
-    call mkdir(expand("~/.vimundofile"), "p")
+let s:undodirpath="~/var/vim/undofiles"
+if !isdirectory(expand(s:undodirpath))
+    call mkdir(expand(s:undodirpath), "p")
 endif
 set undofile
-set undodir=~/.vimundofile
-
-let $VIMFILE_DIR = (has('win32') || has('win64')) ? 'vimfiles' : '.vim'
+set undodir=~/var/vim/undofiles
 
 " golang
 if isdirectory(expand("$GOROOT/misc/vim"))
@@ -40,7 +44,7 @@ if isdirectory(expand("~/$VIMFILE_DIR/bundle/operator-camelize.vim"))
 endif
 
 if isdirectory(expand("~/$VIMFILE_DIR/ftbundle/python/jedi-vim"))
-    autocmd FileType python let b:did_ftplugin = 1
+    autocmd FileType python let b:did_ftplugin=1
 endif
 
 if isdirectory(expand("~/$VIMFILE_DIR/ftbundle/ps1/poshcomplete-vim"))
